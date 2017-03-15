@@ -3,7 +3,7 @@ import FWCore.ParameterSet.Config as cms
 # MC Samples of Charged Higgs & Bkg at 13 TeV       #
 M = "/MINIAODSIM"
 year = "RunIIFall15MiniAODv2-PU25nsData2015v1_76X_mcRun2_asymptotic"
-allMCSampDict ={"TTJets": "/TTJets_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/"+year+"_v3-v3"+M,
+mcSampDict ={"TTJets": "/TTJets_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/"+year+"_v3-v3"+M,
          "TTJets_mtop169": "/TTJets_mtop1695_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/"+year+"_v12-v1"+M,
          "TTJets_mtop175": "/TTJets_mtop1755_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/"+year+"_v12-v1"+M,
          "ST_tW": "/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+year+"_v12-v1"+M,

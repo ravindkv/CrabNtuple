@@ -1,38 +1,22 @@
 import FWCore.ParameterSet.Config as cms
-from allMCsamples import allMCsamplesDict
-from allDATAsamples import allDATAsamplesDict
+import os
+import sys
 import datetime
 
-print len(allMCsamplesDict)
+#IMPORT MODULES FROM OTHER DIR
+sys.path.insert(0, os.getcwd().replace("test","data"))
+from AllDataSamples import dataSampDict
+from AllMCSamples import mcSampDict
 
-#Get nth key, value of MC sample
-def getMCsampleValue(MCdict, n):
-    return MCdict[list(MCdict)[n]]
+sys.path.insert(0, os.getcwd().replace("test","python"))
+from SamplesKeyValue import getMCVal, getMCKey, getDataVal, getDataKey
 
-def getMCsampleKey(MCdict, n):
-   Value = getMCsampleValue(MCdict, n)
-   todayDate = datetime.date.today()
-   startingName = Value.split("/")[1].split("_")[0]
-   Key = startingName+"_ntuple_"+str(todayDate)
-   return Key
+#print len(mcSampDict)
+for n in range(len(mcSampDict)):
+    print getMCKey(mcSampDict, n)
+    print getMCVal(mcSampDict, n)
 
-print getMCsampleKey(allMCsamplesDict, 10)
-print getMCsampleValue(allMCsamplesDict, 10)
-
-#Get nth key, value of DATA sample
-def getDATAsampleValue(DATAdict, n):
-    return DATAdict[list(DATAdict)[n]]
-
-def getDATAsampleKey(DATAdict, n):
-   Value = getDATAsampleValue(DATAdict, n)
-   todayDate = datetime.date.today()
-   startingName = Value.split("/")[1].split("_")[0]
-   Key = startingName+"_ntuple_"+str(todayDate)
-   return Key
-
-print getDATAsampleKey(allDATAsamplesDict, 3)
-print getDATAsampleValue(allDATAsamplesDict, 3)
-
+'''
 #USER INPUTS
 isMuons = True
 isElectrons = False
@@ -106,4 +90,4 @@ if isElectrons:
             config.Data.inputDataset = getDATAsampleValue(allDATAsamplesDict, d)
             config.Data.outLFNDirBase = '/store/user/%s/test/crab_ntuple'+ele_DATA+'/'+getDATAsampleKey(allMCsamplesDict, d)+ele_DATA %(getUsernameFromSiteDB())
 
-
+'''
