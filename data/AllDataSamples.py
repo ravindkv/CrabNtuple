@@ -23,10 +23,8 @@ dataSampDict ={"TTJets": "/TTJets_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/"+year
          "WW": "/WW_TuneCUETP8M1_13TeV-pythia8/"+year+"_v12-v1"+M,
          "WZ": "/WZ_TuneCUETP8M1_13TeV-pythia8/"+year+"_v12-v1"+M,
          "ZZ": "/ZZ_TuneCUETP8M1_13TeV-pythia8/"+year+"_v12-v1"+M,
-         "QCD_Pt_30_80_EMEnriched":"",
          "QCD_Pt-15to20_EM": "/QCD_Pt-20to30_EMEnriched_TuneCUETP8M1_13TeV_pythia8/"+year+"_v12-v1"+M,
          "QCD_Pt-120to170_EM": "/QCD_Pt-120to170_EMEnriched_TuneCUETP8M1_13TeV_pythia8/"+year+"_v12-v1"+M,
          "QCD_Pt-170to300_EM": "/QCD_Pt-170to300_EMEnriched_TuneCUETP8M1_13TeV_pythia8/"+year+"_v12-v1"+M,
-         "/TTToHplusBWB": ""
          }
 
