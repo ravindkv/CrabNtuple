@@ -23,16 +23,6 @@ for n in range(len(dataSampDict)):
 '''
 
 #CRAB PARAMETERS
-#users inputs -------------------
-isMuons = True
-isElectrons = True
-isMC = True
-isData = True
-#range_MC = len(mcSampDict)
-#range_Data = len(dataSampDict)
-range_MC = 2
-range_Data = 2
-#-------------------------------
 
 #default CRAB parameters
 #https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile#CRAB_configuration_parameters
@@ -49,17 +39,27 @@ config.Data.ignoreLocality = True
 config.Site.storageSite = 'T2_IN_TIFR'
 
 #https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRABClientLibraryAPI#Example_submitting_multiple_task
+#users inputs ------------------
+isMuons = True
+isElectrons = True
+isMC = True
+isData = True
+#range_MC = len(mcSampDict)
+#range_Data = len(dataSampDict)
+range_MC = 1
+range_Data = 1
+#-------------------------------
 
 file_of_t2_paths = open("FileOfT2Paths_"+ str(datetime.date.today()).replace("-","") +".py", 'w')
 #Muon channel
 all_t2_paths = []
+muons_MC_t2_paths = []
+muons_Data_t2_paths = []
+
 from CRABAPI.RawCommand import crabCommand
 if isMuons:
-    muons_t2_paths = []
     if isMC:
-        muons_MC_t2_paths = []
-        toPrint("MINIAOD TO NTUPLE OF MC, FOR MUON CHANNEL","")
-        file_of_t2_paths.write("MUON_MC\n")
+        toPrint("MUONS, MC ","")
         for m in range(range_MC):
             mu_MC = "MuonsMC"
             config.General.requestName = getMCKey(mcSampDict, m) +"_"+mu_MC
@@ -70,12 +70,12 @@ if isMuons:
             config.Data.outLFNDirBase= '/store/user/rverma/test/Crab'+mu_MC+'/'+getMCKey(mcSampDict, m)+"_"+mu_MC
 
             toPrint("Path at T2", '/cms'+ str(config.Data.outLFNDirBase))
+            print getPathsAtT2(mu_MC, mcSampDict, m)
             muons_MC_t2_paths.append(getPathsAtT2(mu_MC, mcSampDict, m))
             crabCommand('submit', config = config)
 
     if isData:
-        muons_Data_t2_paths = []
-        toPrint("MINIAOD TO NTUPLE OF DATA, FOR MUON CHANNEL","")
+        toPrint("MUONS, DATA ","")
         for d in range(range_Data):
             mu_Data = "MuonsData"
             config.General.requestName = getDataKey(dataSampDict, d) +"_"+mu_Data
@@ -85,17 +85,18 @@ if isMuons:
             path_T2 = '/store/user/rverma/test/Crab'+mu_Data+'/'+getDataKey(dataSampDict, m)+"_"+mu_Data
             config.Data.outLFNDirBase = path_T2
             toPrint("Path at T2",path_T2)
-            file_path_T2.write(path_T2+getMCVal(mcSampDict, m).split("/")[1])
-            #crabCommand('submit', config = config)
-    muons_t2_paths.append(muons_MC_t2_paths)
-    muons_t2_paths.append(muons_Data_t2_paths)
+            crabCommand('submit', config = config)
+            muons_Data_t2_paths.append(getPathsAtT2(mu_Data, dataSampDict, d))
+
+file_of_t2_paths.write(muons_MC_t2_paths)
+file_of_t2_paths.write(muons_Data_t2_paths)
 
 #Electron channel
+electrons_MC_t2_paths = []
+electrons_Data_t2_paths = []
 if isElectrons:
-    electrons_t2_paths = []
     if isMC:
-        electrons_MC_t2_paths = []
-        toPrint("MINIAOD TO NTUPLE OF MC, FOR ELECTRON CHANNEL","")
+        toPrint("ELECTRONS, MC ","")
         for m in range(range_MC):
             ele_MC = "ElectronsMC"
             config.General.requestName = getMCKey(mcSampDict, m) +"_"+ele_MC
@@ -105,11 +106,11 @@ if isElectrons:
             path_T2 = '/store/user/rverma/test/Crab'+ele_MC+'/'+getMCKey(mcSampDict, m)+"_"+ele_MC
             config.Data.outLFNDirBase = path_T2
             toPrint("Path at T2",path_T2)
-            #crabCommand('submit', config = config)
+            electrons_MC_t2_paths.append(getPathsAtT2(ele_MC, mcSampDict, m))
+            crabCommand('submit', config = config)
 
     if isData:
-        electrons_Data_t2_paths = []
-        toPrint("MINIAOD TO NTUPLE OF DATA, FOR ELECTRON CHANNEL","")
+        toPrint("ELECTRONS, DATA ","")
         for d in range(range_Data):
             ele_Data = "ElectronsData"
             config.General.requestName = getDataKey(dataSampDict, d) + "_"+ele_Data
@@ -119,11 +120,9 @@ if isElectrons:
             path_T2 = '/store/user/rverma/test/Crab'+ele_Data+'/'+getDataKey(dataSampDict, m)+"_"+ele_Data
             config.Data.outLFNDirBase = path_T2
             toPrint("Path at T2",path_T2)
-            #crabCommand('submit', config = config)
-    electrons_t2_paths.append(electrons_MC_t2_paths)
-    electrons_t2_paths.append(electrons_Data_t2_paths)
+            electrons_Data_t2_paths.append(getPathsAtT2(ele_Data, dataSampDict, d))
+            crabCommand('submit', config = config)
 
-all_t2_paths.append(muons_t2_paths)
-all_t2_paths.append(electrons_t2_paths)
-file_of_t2_paths.write(all_t2_paths)
+file_of_t2_paths.write(electrons_MC_t2_paths)
+file_of_t2_paths.write(electrons_Data_t2_paths)
 
