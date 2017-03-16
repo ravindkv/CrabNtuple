@@ -31,6 +31,14 @@ def getDataKey(dict_Data, n):
        key = start_name+"_ntuple_"+str(today_date)
        return key
 
+def getLFNDirBaseMC(channel_MC, mcSampDict, m):
+    outLFNDirBase = '/store/user/rverma/test/Crab'+ channel_MC+ '/'+getMCKey(mcSampDict, m)+"_"+ channel_MC
+    return outLFNDirBase
+
+def getLFNDirBaseData(channel_Data, dataSampDict, m):
+    outLFNDirBase = '/store/user/rverma/test/Crab'+ channel_Data+ '/'+getDataKey(dataSampDict, m)+"_"+ channel_Data
+    return outLFNDirBase
+
 #PATHS OF NTUPLE AT T2_IN_TIFR
 def getPathsAtT2(samp_channel, samp_dict, n):
     '''
@@ -62,7 +70,6 @@ def getPathsAtT2(samp_channel, samp_dict, n):
 def toPrint(string, value):
     length = (len(string)+len(str(value))+2)
     line = "-"*length
-    print ""
     print "* "+ line +                    " *"
     print "| "+ " "*length +              " |"
     print "| "+ string+ ": "+ str(value)+ " |"
