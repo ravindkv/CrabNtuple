@@ -28,7 +28,7 @@ def getDataKey(dict_Data, n):
    today_date = str(datetime.date.today()).replace("-","")
    if val !="":
        start_name = val.split("/")[1].split("_")[0]
-       key = start_name+"_ntuple_"+str(today_date)
+       key = start_name+"_Ntuple"#+str(today_date)
        return key
 
 def getLFNDirBaseMC(channel_MC, mcSampDict, m):

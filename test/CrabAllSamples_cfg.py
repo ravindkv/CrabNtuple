@@ -35,7 +35,8 @@ config.JobType.allowUndistributedCMSSW = True
 config.JobType.pluginName = 'Analysis'
 config.JobType.disableAutomaticOutputCollection = True
 config.Data.inputDBS = 'global'
-config.Data.unitsPerJob = 10
+# number of files to be run in one go = total files/ unitsPerJob
+config.Data.unitsPerJob = 50
 config.Data.splitting = 'FileBased'
 config.Data.ignoreLocality = True
 config.Site.storageSite = 'T2_IN_TIFR'
@@ -44,8 +45,8 @@ config.Site.storageSite = 'T2_IN_TIFR'
 #users inputs ------------------
 isMuons = False
 isElectrons = True
-isMC = True
-isData = False
+isMC = False
+isData = True
 #range_MC = len(mcSampDict)
 #range_Data = len(dataSampDict)
 range_MC = 1
@@ -100,7 +101,7 @@ if isElectrons:
             ele_MC = "EleMC_"+ today_date
             config.General.requestName = getMCKey(mcSampDict, m) +"_"+ele_MC
             config.General.workArea = 'Crab' +ele_MC
-            config.JobType.psetName = 'muons_miniAOD_to_ntuple_13TeV_cfg.py'
+            config.JobType.psetName = 'electrons_miniAOD_to_ntuple_13TeV_cfg.py'
             config.Data.inputDataset = getMCVal(mcSampDict, m)
             config.Data.outLFNDirBase= getLFNDirBaseMC(ele_MC, mcSampDict, m)
             config.JobType.outputFiles = [getMCKey(mcSampDict, m)+ "_"+ ele_MC+ ".root" ]
@@ -113,10 +114,10 @@ if isElectrons:
             ele_Data = "EleData_"+ today_date
             config.General.requestName = getDataKey(dataSampDict, d) + "_"+ele_Data
             config.General.workArea = 'Crab' +ele_Data
-            config.JobType.psetName = 'muons_miniAOD_to_ntuple_13TeV_cfg.py'
+            config.JobType.psetName = 'electrons_miniAOD_to_ntuple_13TeV_cfg.py'
             config.Data.inputDataset = getDataVal(dataSampDict, d)
-            config.Data.outLFNDirBase = getLFNDirBaseData(ele_Data, dataSampDict, m)
-            config.JobType.outputFiles = [getMCKey(mcSampDict, m)+ "_"+ ele_MC+ ".root" ]
+            config.Data.outLFNDirBase = getLFNDirBaseData(ele_Data, dataSampDict, d)
+            config.JobType.outputFiles = [getMCKey(mcSampDict, d)+ "_"+ ele_Data+ ".root" ]
             electrons_Data_t2_paths.append(getPathsAtT2(ele_Data, dataSampDict, d))
             multiCrabSubmit(config, config.Data.outLFNDirBase)
 
