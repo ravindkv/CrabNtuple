@@ -20,7 +20,7 @@
  * source /cvmfs/cms.cern.ch/crab3/crab_standalone.sh
  * voms-proxy-init -voms cms
 
- #### Run CRAB over single samples ####
+ #### Run CRAB over single sample ####
  
  * crab submit -c CrabOneSample_cfg.py 
  
