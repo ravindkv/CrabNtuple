@@ -11,10 +11,10 @@ def getMCKey(dict_MC, n):
    today_date = str(datetime.date.today()).replace("-","")
    if val !="":
        start_name = val.split("/")[1].split("_")[0]
-       key = start_name+"_ntuple_"+str(today_date)
+       key = start_name+"_Ntuple"#+str(today_date)
        if start_name == "ST":
            start_name = start_name+ "_" +val.split("/")[1].split("_")[1]
-           key = start_name+"_ntuple_"+str(today_date)
+           key = start_name+"_Ntuple"#+str(today_date)
            return key
        else:
            return key
@@ -40,6 +40,7 @@ def getLFNDirBaseData(channel_Data, dataSampDict, m):
     return outLFNDirBase
 
 #PATHS OF NTUPLE AT T2_IN_TIFR
+#https://twiki.cern.ch/twiki/bin/view/CMSPublic/Crab3DataHandling
 def getPathsAtT2(samp_channel, samp_dict, n):
     '''
     /cms/store/user/rverma/
@@ -53,7 +54,7 @@ def getPathsAtT2(samp_channel, samp_dict, n):
     t2_user_dir = '/store/user/rverma'
     t2_crab_dir = '/test/'+local_crab_dir+'/'+local_crab_subdir
     t2_samp_name = "/"+getMCVal(samp_dict, n).split("/")[1]
-    t2_samp_subdir = "/crab_"+local_crab_subdir
+    t2_samp_subdir = "/"+local_crab_subdir
 
     year_full = str(datetime.date.today()).split("-")[0]
     year_short = year_full.replace(year_full[0],"").replace(year_full[1],"")
@@ -62,7 +63,8 @@ def getPathsAtT2(samp_channel, samp_dict, n):
     t2_submit_date = "/"+year_short+ month+ day
     t2_submit_time = "_"+str(datetime.datetime.now().time()).replace(":","").split(".")[0]
     t2_submit_date_time = t2_submit_date + t2_submit_time
-    t2_full_path = '/cms'+ t2_user_dir+ t2_crab_dir+ t2_samp_name+ t2_samp_subdir+ t2_submit_date_time
+    t2_ntuple_file = "/0000/"+local_crab_subdir+ ".root"
+    t2_full_path = '/cms'+ t2_user_dir+ t2_crab_dir+ t2_samp_name+ t2_samp_subdir+ t2_submit_date_time+ t2_ntuple_file
 
     return t2_full_path
 

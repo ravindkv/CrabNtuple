@@ -20,8 +20,9 @@ def multiCrabSubmit(config, path_T2):
         ## if it is not in the request try the next
         if sys.argv[1] !=  config.General.requestName: return
         ###
-        print "--- Submitting " + "\033[01;32m" + config.Data.inputDataset.split('/')[1] + "\033[00m"  + " ---"
-        toPrint("LFNDirBase at T2", path_T2)
+        #print "--- Submitting " + "\033[01;32m" + config.Data.inputDataset.split('/')[1] + "\033[00m"  + " ---"
+        toPrint("Submitting", "\033[01;32m" + config.Data.inputDataset.split('/')[1] + "\033[00m")
+        #toPrint("outLFNDirBase at T2", "/cms"+path_T2)
         config.Data.outputDatasetTag = config.General.requestName
         try:
             crabCommand('submit', config = config)
