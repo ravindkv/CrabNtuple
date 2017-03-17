@@ -28,4 +28,6 @@
  
  * python CrabAllSamples_cfg.py
  
-
+ #### Take a look at CRAB tutorial ####
+ * https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookCRAB3Tutorial
+ * https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
