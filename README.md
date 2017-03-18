@@ -15,8 +15,8 @@
  
  #### Download and set CrabNtuple ####
  
- * https://github.com/ravindkv/CrabNtuple.git
- * cd CrabNtuple/test
+ * git clone https://github.com/ravindkv/MultiCrab.git
+ * cd MultiCrab/test
  * source /cvmfs/cms.cern.ch/crab3/crab_standalone.sh
  * voms-proxy-init -voms cms
 

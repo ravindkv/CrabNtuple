@@ -1,5 +1,9 @@
+#///////////////////////////////////////////////////////
+#                                                      #
+# Define functions to read input datasets, paths at T2 #
+#                                                      #
+#///////////////////////////////////////////////////////
 
-#SAMPLE NAME FROM DICT
 import datetime
 
 #Get nth key, value of MC
@@ -8,13 +12,13 @@ def getMCVal(dict_MC, n):
 
 def getMCKey(dict_MC, n):
    val = getMCVal(dict_MC, n)
-   today_date = str(datetime.date.today()).replace("-","")
+   #today_date = str(datetime.date.today()).replace("-","")
    if val !="":
        start_name = val.split("/")[1].split("_")[0]
-       key = start_name+"_Ntuple"#+str(today_date)
+       key = start_name #+"_Ntuple"+str(today_date)
        if start_name == "ST":
            start_name = start_name+ "_" +val.split("/")[1].split("_")[1]
-           key = start_name+"_Ntuple"#+str(today_date)
+           key = start_name #+"_Ntuple"+str(today_date)
            return key
        else:
            return key
@@ -25,10 +29,10 @@ def getDataVal(dict_Data, n):
 
 def getDataKey(dict_Data, n):
    val = getDataVal(dict_Data, n)
-   today_date = str(datetime.date.today()).replace("-","")
+   #today_date = str(datetime.date.today()).replace("-","")
    if val !="":
        start_name = val.split("/")[1].split("_")[0]
-       key = start_name+"_Ntuple"#+str(today_date)
+       key = start_name#+"_Ntuple"+str(today_date)
        return key
 
 def getLFNDirBaseMC(channel_MC, mcSampDict, m):
@@ -63,7 +67,7 @@ def getPathsAtT2(samp_channel, samp_dict, n):
     t2_submit_date = "/"+year_short+ month+ day
     t2_submit_time = "_"+str(datetime.datetime.now().time()).replace(":","").split(".")[0]
     t2_submit_date_time = t2_submit_date + t2_submit_time
-    t2_ntuple_file = "/0000/"+local_crab_subdir+ ".root"
+    t2_ntuple_file = "/0000/"+getMCKey(samp_dict, n) +"_Ntuple_"+samp_channel+ ".root"
     t2_full_path = '/cms'+ t2_user_dir+ t2_crab_dir+ t2_samp_name+ t2_samp_subdir+ t2_submit_date_time+ t2_ntuple_file
 
     return t2_full_path
