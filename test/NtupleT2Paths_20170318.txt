@@ -1,6 +1,6 @@
 ['MUON MC:'],
 
-['MUON DATA:', '/cms/store/user/rverma/test/CrabMuData_20170318/QCD_MuData_20170318/QCD_Pt-120to170_EMEnriched_TuneCUETP8M1_13TeV_pythia8/QCD_MuData_20170318/170318_121845/0000/QCD_MuData_20170318.root'],
+['MUON DATA:', '/cms/store/user/rverma/test/CrabMuData_20170318/QCD_MuData_20170318/QCD_Pt-120to170_EMEnriched_TuneCUETP8M1_13TeV_pythia8/QCD_MuData_20170318/170318_171021/0000/QCD_Ntuple_MuData_20170318.root'],
 
 ['ELECTRON MC:'],
 
