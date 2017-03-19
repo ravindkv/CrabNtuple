@@ -51,13 +51,13 @@ config.Site.storageSite = 'T2_IN_TIFR'
 #USERS INPUTS
 #-------------------------------
 isMuons = True
-isElectrons = False
-isMC = False
+isElectrons = True
+isMC = True
 isData = True
 #range_MC = len(mcSampDict)
 #range_Data = len(dataSampDict)
-range_MC = 1
-range_Data = 1
+range_MC = 5
+range_Data = 5
 #-------------------------------
 
 #MUON CHANNEL
@@ -74,11 +74,11 @@ if isMuons:
             mu_MC = "MuMC_"+ today_date
             config.General.requestName = getMCKey(mcSampDict, m) +"_"+mu_MC
             config.General.workArea = 'Crab' +mu_MC
-            config.JobType.psetName = '../../MiniTree/Selection/test/muons_miniAOD_to_ntuple_13TeV_cfg.py'
+            #config.JobType.psetName = '../../MiniTree/Selection/test/muons_miniAOD_to_ntuple_13TeV_cfg.py'
             #specify the dataset. Comment process.source.fileNames in psetName
             config.Data.inputDataset = getMCVal(mcSampDict, m)
             config.Data.outLFNDirBase = getLFNDirBaseMC(mu_MC, mcSampDict, m)
-            config.JobType.outputFiles = [getMCKey(mcSampDict, m)+ "_Ntuple_"+ mu_MC+ ".root" ]
+            config.JobType.outputFiles = [getMCKey(mcSampDict, m)+ mu_MC+ "_Ntuple.root" ]
             config.JobType.pyCfgParams = ["sampleCode="+getMCKey(mcSampDict, m)]
             multiCrabSubmit(config, config.Data.outLFNDirBase)
             muons_MC_t2_paths.append(getPathsAtT2(mu_MC, mcSampDict, m))
@@ -89,10 +89,10 @@ if isMuons:
             mu_Data = "MuData_"+ today_date
             config.General.requestName = getDataKey(dataSampDict, d) +"_"+mu_Data
             config.General.workArea = 'Crab'+mu_Data
-            config.JobType.psetName = '../../MiniTree/Selection/test/muons_miniAOD_to_ntuple_13TeV_cfg.py'
+            #config.JobType.psetName = '../../MiniTree/Selection/test/muons_miniAOD_to_ntuple_13TeV_cfg.py'
             config.Data.inputDataset = getDataVal(dataSampDict, d)
             config.Data.outLFNDirBase = getLFNDirBaseData(mu_Data, dataSampDict, d)
-            config.JobType.outputFiles = [getMCKey(mcSampDict, d)+ "_Ntuple_"+ mu_Data+ ".root" ]
+            config.JobType.outputFiles = [getMCKey(mcSampDict, d)+ mu_Data+ "_Ntuple_"+ ".root" ]
             config.JobType.pyCfgParams = ["sampleCode="+getMCKey(dataSampDict, d)]
             multiCrabSubmit(config, config.Data.outLFNDirBase)
             muons_Data_t2_paths.append(getPathsAtT2(mu_Data, dataSampDict, d))
@@ -110,7 +110,7 @@ if isElectrons:
             ele_MC = "EleMC_"+ today_date
             config.General.requestName = getMCKey(mcSampDict, m) +"_"+ele_MC
             config.General.workArea = 'Crab' +ele_MC
-            config.JobType.psetName = '../../MiniTree/Selection/test/electrons_miniAOD_to_ntuple_13TeV_cfg.py'
+            #config.JobType.psetName = '../../MiniTree/Selection/test/electrons_miniAOD_to_ntuple_13TeV_cfg.py'
             config.Data.inputDataset = getMCVal(mcSampDict, m)
             config.Data.outLFNDirBase= getLFNDirBaseMC(ele_MC, mcSampDict, m)
             config.JobType.outputFiles = [getMCKey(mcSampDict, m)+ "_Ntuple"+ ele_MC+ ".root" ]
@@ -124,7 +124,7 @@ if isElectrons:
             ele_Data = "EleData_"+ today_date
             config.General.requestName = getDataKey(dataSampDict, d) + "_"+ele_Data
             config.General.workArea = 'Crab' +ele_Data
-            config.JobType.psetName = '../../MiniTree/Selection/test/electrons_miniAOD_to_ntuple_13TeV_cfg.py'
+            #config.JobType.psetName = '../../MiniTree/Selection/test/electrons_miniAOD_to_ntuple_13TeV_cfg.py'
             config.Data.inputDataset = getDataVal(dataSampDict, d)
             config.Data.outLFNDirBase = getLFNDirBaseData(ele_Data, dataSampDict, d)
             config.JobType.outputFiles = [getMCKey(mcSampDict, d)+ "_Ntuple_"+ ele_Data+ ".root" ]

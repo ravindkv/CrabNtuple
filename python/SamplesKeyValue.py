@@ -67,8 +67,8 @@ def getPathsAtT2(samp_channel, samp_dict, n):
     t2_submit_date = "/"+year_short+ month+ day
     t2_submit_time = "_"+str(datetime.datetime.now().time()).replace(":","").split(".")[0]
     t2_submit_date_time = t2_submit_date + t2_submit_time
-    t2_ntuple_file = "/0000/"+getMCKey(samp_dict, n) +"_Ntuple_"+samp_channel+ ".root"
-    t2_full_path = '/cms'+ t2_user_dir+ t2_crab_dir+ t2_samp_name+ t2_samp_subdir+ t2_submit_date_time+ t2_ntuple_file
+    t2_ntuple_file = "/0000/"+getMCKey(samp_dict, n)+ samp_channel+ "_Ntuple.root"
+    t2_full_path = '/cms'+ t2_user_dir+ t2_crab_dir+ t2_samp_name+ t2_samp_subdir#+ t2_submit_date_time+ t2_ntuple_file
 
     return t2_full_path
 
