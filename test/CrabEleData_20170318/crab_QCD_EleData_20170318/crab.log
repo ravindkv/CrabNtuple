@@ -1,0 +1,75 @@
+DEBUG 2017-03-18 22:17:39,201: 	 Executing command: 'submit'
+DEBUG 2017-03-18 22:17:39,203: 	 Found CRAB cache file /afs/cern.ch/user/r/rverma/.crab3
+DEBUG 2017-03-18 22:17:39,210: 	 Checking credentials
+DEBUG 2017-03-18 22:17:39,210: 	 Found proxy file /tmp/x509up_u93032
+DEBUG 2017-03-18 22:17:39,210: 	 Getting proxy life time left
+DEBUG 2017-03-18 22:17:39,714: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u93032 -timeleft
+ output : 24707
+
+ error: 
+ retcode : 0
+DEBUG 2017-03-18 22:17:40,220: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u93032 -actimeleft
+ output : 24706
+
+ error: 
+ retcode : 0
+DEBUG 2017-03-18 22:17:40,221: 	 Proxy valid for 06:51:47 hours
+DEBUG 2017-03-18 22:17:40,222: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2017-03-18 22:17:40,419: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rverma/CN=799160/CN=Ravindra Kumar Verma
+
+ error: 
+ retcode : 0
+DEBUG 2017-03-18 22:17:40,419: 	 Checking credentials
+DEBUG 2017-03-18 22:17:40,419: 	 Found proxy file /tmp/x509up_u93032
+DEBUG 2017-03-18 22:17:40,419: 	 Getting proxy life time left
+DEBUG 2017-03-18 22:17:40,925: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u93032 -timeleft
+ output : 24706
+
+ error: 
+ retcode : 0
+DEBUG 2017-03-18 22:17:41,430: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u93032 -actimeleft
+ output : 24705
+
+ error: 
+ retcode : 0
+DEBUG 2017-03-18 22:17:41,431: 	 Proxy valid for 06:51:46 hours
+DEBUG 2017-03-18 22:17:41,935: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u93032 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2017-03-18 22:17:42,225: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105).cern.ch
+DEBUG 2017-03-18 22:17:42,335: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rverma/CN=799160/CN=Ravindra Kumar Verma
+
+ error: 
+ retcode : 0
+DEBUG 2017-03-18 22:17:42,335: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2017-03-18 22:17:42,335: 	 Calculating hash of /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rverma/CN=799160/CN=Ravindra Kumar Verma_cmsweb.cern.ch for credential name
+DEBUG 2017-03-18 22:17:42,540: 	 Executing : 
+ command : myproxy-info -l 90149b1ff324276981652cb0e9531f507bc9bc5d -s myproxy.cern.ch
+ output : username: 90149b1ff324276981652cb0e9531f507bc9bc5d
+owner: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=rverma/CN=799160/CN=Ravindra Kumar Verma
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105).cern.ch
+  timeleft: 640:18:06  (26.7 days)
+
+ error: 
+ retcode : 0
+DEBUG 2017-03-18 22:17:42,542: 	 Myproxy is valid: 2305086
+DEBUG 2017-03-18 22:17:42,542: 	 Command use: submit
+DEBUG 2017-03-18 22:17:42,542: 	 Options use: ['--config', <WMCore.Configuration.Configuration object at 0x7fe675e55ad0>]
+DEBUG 2017-03-18 22:17:42,796: 	 CRABClient version: 3.3.1703
+DEBUG 2017-03-18 22:17:42,797: 	 Instance is prod
+DEBUG 2017-03-18 22:17:42,797: 	 Server base url is cmsweb.cern.ch
+DEBUG 2017-03-18 22:17:42,797: 	 Command url /crabserver/prod/workflow
+DEBUG 2017-03-18 22:17:42,797: 	 Started submission
+DEBUG 2017-03-18 22:17:42,797: 	 Working on /afs/cern.ch/work/r/rverma/private/miniAOD_to_ntuple_13TeV/CMSSW_8_0_25/src/CrabNtuple/test/CrabEleData_20170318/crab_QCD_EleData_20170318

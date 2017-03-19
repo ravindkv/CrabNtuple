@@ -1,4 +1,4 @@
-# CrabNtuple
+# MultiCrab
 
  #### Set the CMSSSW release ####
  
@@ -13,7 +13,7 @@
  * scram b -j20
  * cd ..
  
- #### Download and set CrabNtuple ####
+ #### Download and set MultiCrab ####
  
  * git clone https://github.com/ravindkv/MultiCrab.git
  * cd MultiCrab/test
@@ -31,3 +31,4 @@
  #### Take a look at CRAB tutorial ####
  * https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookCRAB3Tutorial
  * https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
+ * https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRABClientLibraryAPI#Example_submitting_multiple_task 
