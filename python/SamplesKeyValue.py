@@ -5,42 +5,46 @@
 #///////////////////////////////////////////////////////
 
 import datetime
+import collections
 
 #Get nth key, value of MC
-def getMCVal(dict_MC, n):
-    return dict_MC[list(dict_MC)[n]]
+def getMCVal(mcDict, n):
+    return mcDict[list(mcDict)[n]]
 
-def getMCKey(dict_MC, n):
-   val = getMCVal(dict_MC, n)
-   #today_date = str(datetime.date.today()).replace("-","")
-   if val !="":
-       start_name = val.split("/")[1].split("_")[0]
-       key = start_name #+"_Ntuple"+str(today_date)
-       if start_name == "ST":
-           start_name = start_name+ "_" +val.split("/")[1].split("_")[1]
-           key = start_name #+"_Ntuple"+str(today_date)
-           return key
-       else:
-           return key
-
+def getMCKey(mcDict, n):
+    return list(mcDict)[n]
+    '''
+    val = getMCVal(mcDict, n)
+    #today_date = str(datetime.date.today()).replace("-","")
+    if val !="":
+        start_name = val.split("/")[1].split("_")[0]
+        key = start_name #+"_Ntuple"+str(today_date)
+        if start_name == "ST":
+            start_name = start_name+ "_" +val.split("/")[1].split("_")[1]
+            key = start_name #+"_Ntuple"+str(today_date)
+            return key
+        else:
+            return key
+    '''
 #Get nth key, value of DATA
-def getDataVal(dict_Data, n):
-    return dict_Data[list(dict_Data)[n]]
+def getDataVal(dataDict, n):
+    return dataDict[list(dataDict)[n]]
 
-def getDataKey(dict_Data, n):
-   val = getDataVal(dict_Data, n)
-   #today_date = str(datetime.date.today()).replace("-","")
-   if val !="":
-       start_name = val.split("/")[1].split("_")[0]
-       key = start_name#+"_Ntuple"+str(today_date)
-       return key
-
+def getDataKey(dataDict, n):
+    return list(dataDict)[n]
+    '''
+    val = getDataVal(dataDict, n)
+    if val !="":
+        name = val.replace("MINIAOD","")
+        key = name.replace("/","_").replace("-","_")
+        return key
+    '''
 def getLFNDirBaseMC(channel_MC, mcSampDict, m):
-    outLFNDirBase = '/store/user/rverma/test/Crab'+ channel_MC+ '/'+getMCKey(mcSampDict, m)+"_"+ channel_MC
+    outLFNDirBase = '/store/user/rverma/test2/Crab'+ channel_MC+ '/'+getMCKey(mcSampDict, m)+"_"+ channel_MC
     return outLFNDirBase
 
 def getLFNDirBaseData(channel_Data, dataSampDict, m):
-    outLFNDirBase = '/store/user/rverma/test/Crab'+ channel_Data+ '/'+getDataKey(dataSampDict, m)+"_"+ channel_Data
+    outLFNDirBase = '/store/user/rverma/test2/Crab'+ channel_Data+ '/'+getDataKey(dataSampDict, m)+"_"+ channel_Data
     return outLFNDirBase
 
 #PATHS OF NTUPLE AT T2_IN_TIFR
@@ -48,15 +52,15 @@ def getLFNDirBaseData(channel_Data, dataSampDict, m):
 def getPathsAtT2(samp_channel, samp_dict, n):
     '''
     /cms/store/user/rverma/
-    test/CrabMuonsMC/QCD_ntuple_2017-03-15_MuonsMC/
+    ntuple/CrabMuonsMC/QCD_ntuple_2017-03-15_MuonsMC/
     QCD_Pt-120to170_EMEnriched_TuneCUETP8M1_13TeV_pythia8/
     crab_QCD_ntuple_2017-03-15_MuonsMC/170315_214120/
     0000/W1JetsToLNu_ntuple_2017-03-15_muons_98.root
     '''
-    local_crab_dir = 'Crab' +samp_channel
+    local_crab_dir = samp_channel
     local_crab_subdir = getMCKey(samp_dict, n) +"_"+samp_channel
-    t2_user_dir = '/store/user/rverma'
-    t2_crab_dir = '/test/'+local_crab_dir+'/'+local_crab_subdir
+    t2_user_dir = '/store/user/rverma/Crab/test2/'
+    t2_crab_dir = local_crab_dir+'/'+local_crab_subdir
     t2_samp_name = "/"+getMCVal(samp_dict, n).split("/")[1]
     t2_samp_subdir = "/"+local_crab_subdir
 

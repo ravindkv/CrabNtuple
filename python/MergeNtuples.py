@@ -14,6 +14,24 @@ import os
 import sys
 import datetime
 
+
+#USERS INPUTS
+#-------------------------------
+isMuon = True
+isElectron = True
+isMC = True
+isData = True
+#range_muMC = len(muMC_T2Paths)
+#range_muData = len(muData_T2Paths)
+#range_eleMC = len(eleMC_T2Paths)
+#range_eleData = len(eleData_T2Paths)
+range_muMC = 1
+range_muData = 1
+range_eleMC = 1
+range_eleData = 1
+#-------------------------------
+
+
 #Sample paths at T2
 muMC_T2Paths = []
 muData_T2Paths = []
@@ -35,27 +53,13 @@ for line in open("NtupleT2Paths_20170318.txt"):
         getSampName(line, "ELECTRON DATA", eleData_T2Paths)
 
 
-#USERS INPUTS
-#-------------------------------
-isMuon = True
-isElectron = True
-isMC = True
-isData = True
-#range_muMC = len(muMC_T2Paths)
-#range_muData = len(muData_T2Paths)
-#range_eleMC = len(eleMC_T2Paths)
-#range_eleData = len(eleData_T2Paths)
-range_muMC = 1
-range_muData = 1
-range_eleMC = 1
-range_eleData = 1
-#-------------------------------
-
 def execme(command):
-    print "excecuting command :", command
+    print ""
+    print "\033[01;32m"+ "Excecuting: "+ "\033[00m",  command
+    print ""
     os.system(command)
 
-#read T2 Paths of ntuples, merge them, send merged file to T2
+#read T2 Paths of ntuples, merge them, send merged file back to T2
 def mergeNtuples(T2Paths, range_):
     for m in range(range_):
         path_T2 = T2Paths[m].replace("'","")
@@ -114,5 +118,19 @@ if isElectron:
     if isData:
         mergeNtuples(eleData_T2Paths, range_eleData)
 
+#store the paths of all merged files
+today_date = str(datetime.date.today()).replace("-","")
+file_merged_paths = open("MergedT2Paths_"+ today_date +".txt", 'w')
 
+all_merged_paths = []
+def getMergedPath(ntuple_T2Paths):
+    for n in range(len(ntuple_T2Paths)):
+        all_merged_paths.append(ntuple_T2Paths[n]+"_Ntuple_Merged.root")
+    all_merged_paths.append("\n")
+
+getMergedPath(muMC_T2Paths)
+getMergedPath(muData_T2Paths)
+getMergedPath(eleMC_T2Paths)
+getMergedPath(eleData_T2Paths)
+file_merged_paths.write(all_merged_paths)
 

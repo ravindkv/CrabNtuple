@@ -12,24 +12,34 @@ import datetime
 
 #IMPORT MODULES FROM OTHER DIR
 sys.path.insert(0, os.getcwd().replace("test","data"))
-from AllDataSamples import dataSampDict
-from AllMCSamples import mcSampDict
+from AllDataSamples import dataSampDict as data
+from AllMCSamples import mcSampDict as mc
 
 sys.path.insert(0, os.getcwd().replace("test","python"))
 from SamplesKeyValue import *
 from MultiCrab import multiCrabSubmit
 
-#PRINT SAMPLE INFO
+#Check availability of samples on DAS
 '''
-toPrint("Total MC samples",len(mcSampDict))
-toPrint("Total DATA samples",len(dataSampDict))
-for n in range(len(mcSampDict)):
-    #print getMCKey(mcSampDict, n)
-    print getMCVal(mcSampDict, n)
-for n in range(len(dataSampDict)):
-    print getDataVal(dataSampDict, n)
-'''
+def execme(cmd):
+    print ""
+    print "\033[01;32m"+ "Excecuting: "+ "\033[00m",  cmd
+    os.system(cmd)
+toPrint("Total MC samples",len(mc))
+for n in range(len(mc)):
+    #print getMCKey(mc, n)
+    #print getMCVal(mc, n)
+    das = "das_client.py --query="+"dataset=%s" %getMCVal(mc,n)
+    execme(das)
 
+toPrint("Total DATA samples",len(data))
+for n in range(len(data)):
+    #print getDataKey(data, n)
+    #print getDataVal(data, n)
+    das = "das_client.py --limit=2000 --query="+"dataset=%s" %getDataVal(data,n)
+    execme(das)
+
+'''
 #CRAB PARAMETERS
 #https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile#CRAB_configuration_parameters
 from CRABClient.UserUtilities import config, getUsernameFromSiteDB
@@ -51,13 +61,13 @@ config.Site.storageSite = 'T2_IN_TIFR'
 #USERS INPUTS
 #-------------------------------
 isMuons = True
-isElectrons = True
+isElectrons = False
 isMC = True
-isData = True
-#range_MC = len(mcSampDict)
-#range_Data = len(dataSampDict)
-range_MC = 5
-range_Data = 5
+isData = False
+#range_MC = len(mc)
+#range_Data = len(data)
+range_MC = 1
+range_Data = 1
 #-------------------------------
 
 #MUON CHANNEL
@@ -72,30 +82,30 @@ if isMuons:
         #toPrint("MUONS, MC ","")
         for m in range(range_MC):
             mu_MC = "MuMC_"+ today_date
-            config.General.requestName = getMCKey(mcSampDict, m) +"_"+mu_MC
+            config.General.requestName = getMCKey(mc, m) +"_"+mu_MC
             config.General.workArea = 'Crab' +mu_MC
-            #config.JobType.psetName = '../../MiniTree/Selection/test/muons_miniAOD_to_ntuple_13TeV_cfg.py'
+            config.JobType.psetName = '../../MiniTree/Selection/test/muons_miniAOD_to_ntuple_13TeV_cfg.py'
             #specify the dataset. Comment process.source.fileNames in psetName
-            config.Data.inputDataset = getMCVal(mcSampDict, m)
-            config.Data.outLFNDirBase = getLFNDirBaseMC(mu_MC, mcSampDict, m)
-            config.JobType.outputFiles = [getMCKey(mcSampDict, m)+ mu_MC+ "_Ntuple.root" ]
-            config.JobType.pyCfgParams = ["sampleCode="+getMCKey(mcSampDict, m)]
+            config.Data.inputDataset = getMCVal(mc, m)
+            config.Data.outLFNDirBase = getLFNDirBaseMC(mu_MC, mc, m)
+            config.JobType.outputFiles = [getMCKey(mc, m)+ mu_MC+ "_Ntuple.root" ]
+            config.JobType.pyCfgParams = ["sampleCode="+getMCKey(mc, m)]
             multiCrabSubmit(config, config.Data.outLFNDirBase)
-            muons_MC_t2_paths.append(getPathsAtT2(mu_MC, mcSampDict, m))
+            muons_MC_t2_paths.append(getPathsAtT2(mu_MC, mc, m))
 
     if isData:
         #toPrint("MUONS, DATA ","")
         for d in range(range_Data):
             mu_Data = "MuData_"+ today_date
-            config.General.requestName = getDataKey(dataSampDict, d) +"_"+mu_Data
+            config.General.requestName = getDataKey(data, d) +"_"+mu_Data
             config.General.workArea = 'Crab'+mu_Data
-            #config.JobType.psetName = '../../MiniTree/Selection/test/muons_miniAOD_to_ntuple_13TeV_cfg.py'
-            config.Data.inputDataset = getDataVal(dataSampDict, d)
-            config.Data.outLFNDirBase = getLFNDirBaseData(mu_Data, dataSampDict, d)
-            config.JobType.outputFiles = [getMCKey(mcSampDict, d)+ mu_Data+ "_Ntuple_"+ ".root" ]
-            config.JobType.pyCfgParams = ["sampleCode="+getMCKey(dataSampDict, d)]
+            config.JobType.psetName = '../../MiniTree/Selection/test/muons_miniAOD_to_ntuple_13TeV_cfg.py'
+            config.Data.inputDataset = getDataVal(data, d)
+            config.Data.outLFNDirBase = getLFNDirBaseData(mu_Data, data, d)
+            config.JobType.outputFiles = [getDataKey(data, d)+ mu_Data+ "_Ntuple.root" ]
+            config.JobType.pyCfgParams = ["sampleCode="+getDataKey(data, d)]
             multiCrabSubmit(config, config.Data.outLFNDirBase)
-            muons_Data_t2_paths.append(getPathsAtT2(mu_Data, dataSampDict, d))
+            muons_Data_t2_paths.append(getPathsAtT2(mu_Data, data, d))
 
 file_of_t2_paths.write(str(muons_MC_t2_paths)+",\n\n")
 file_of_t2_paths.write(str(muons_Data_t2_paths)+",\n\n")
@@ -108,13 +118,13 @@ if isElectrons:
         #toPrint("ELECTRONS, MC ","")
         for m in range(range_MC):
             ele_MC = "EleMC_"+ today_date
-            config.General.requestName = getMCKey(mcSampDict, m) +"_"+ele_MC
+            config.General.requestName = getMCKey(mc, m) +"_"+ele_MC
             config.General.workArea = 'Crab' +ele_MC
-            #config.JobType.psetName = '../../MiniTree/Selection/test/electrons_miniAOD_to_ntuple_13TeV_cfg.py'
-            config.Data.inputDataset = getMCVal(mcSampDict, m)
-            config.Data.outLFNDirBase= getLFNDirBaseMC(ele_MC, mcSampDict, m)
-            config.JobType.outputFiles = [getMCKey(mcSampDict, m)+ "_Ntuple"+ ele_MC+ ".root" ]
-            config.JobType.pyCfgParams = ["sampleCode="+getMCKey(mcSampDict, m)]
+            config.JobType.psetName = '../../MiniTree/Selection/test/electrons_miniAOD_to_ntuple_13TeV_cfg.py'
+            config.Data.inputDataset = getMCVal(mc, m)
+            config.Data.outLFNDirBase= getLFNDirBaseMC(ele_MC, mc, m)
+            config.JobType.outputFiles = [getMCKey(mc, m)+ ele_MC+ "_Ntuple.root" ]
+            config.JobType.pyCfgParams = ["sampleCode="+getMCKey(mc, m)]
             multiCrabSubmit(config, config.Data.outLFNDirBase)
             electrons_MC_t2_paths.append(getPathsAtT2(ele_MC, mcSampDict, m))
 
@@ -122,19 +132,17 @@ if isElectrons:
         #toPrint("ELECTRONS, DATA ","")
         for d in range(range_Data):
             ele_Data = "EleData_"+ today_date
-            config.General.requestName = getDataKey(dataSampDict, d) + "_"+ele_Data
+            config.General.requestName = getDataKey(data, d) + "_"+ele_Data
             config.General.workArea = 'Crab' +ele_Data
-            #config.JobType.psetName = '../../MiniTree/Selection/test/electrons_miniAOD_to_ntuple_13TeV_cfg.py'
-            config.Data.inputDataset = getDataVal(dataSampDict, d)
-            config.Data.outLFNDirBase = getLFNDirBaseData(ele_Data, dataSampDict, d)
-            config.JobType.outputFiles = [getMCKey(mcSampDict, d)+ "_Ntuple_"+ ele_Data+ ".root" ]
-            config.JobType.pyCfgParams = ["sampleCode="+getMCKey(dataSampDict, d)]
-            electrons_Data_t2_paths.append(getPathsAtT2(ele_Data, dataSampDict, d))
+            config.JobType.psetName = '../../MiniTree/Selection/test/electrons_miniAOD_to_ntuple_13TeV_cfg.py'
+            config.Data.inputDataset = getDataVal(data, d)
+            config.Data.outLFNDirBase = getLFNDirBaseData(ele_Data, data, d)
+            config.JobType.outputFiles = [getDataKey(data, d)+ ele_Data+ "_Ntuple.root" ]
+            config.JobType.pyCfgParams = ["sampleCode="+getDataKey(data, d)]
+            electrons_Data_t2_paths.append(getPathsAtT2(ele_Data, data, d))
             multiCrabSubmit(config, config.Data.outLFNDirBase)
 
 #ALL T2 PATHS
 file_of_t2_paths.write(str(electrons_MC_t2_paths)+",\n\n")
 file_of_t2_paths.write(str(electrons_Data_t2_paths))
-
-
 
