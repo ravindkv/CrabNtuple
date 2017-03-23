@@ -12,33 +12,32 @@ import datetime
 
 #IMPORT MODULES FROM OTHER DIR
 sys.path.insert(0, os.getcwd().replace("minitree","sample"))
-from AllDataSamples import dataSampDict as data
-from AllMCSamples import mcSampDict as mc
+from DataMiniAOD import dataSampDict as data
+from MCMiniAOD import mcSampDict as mc
 
-sys.path.insert(0, os.getcwd().replace("minitree","python"))
+sys.path.insert(0, os.getcwd().replace("minitree","function"))
 from SamplesKeyValue import *
 from MultiCrab import multiCrabSubmit
 
 #Check availability of samples on DAS
-'''
 def execme(cmd):
     print ""
     print "\033[01;32m"+ "Excecuting: "+ "\033[00m",  cmd
     os.system(cmd)
 toPrint("Total MC samples",len(mc))
+
 for n in range(len(mc)):
     #print getMCKey(mc, n)
-    #print getMCVal(mc, n)
+    print getMCVal(mc, n)
     das = "das_client.py --query="+"dataset=%s" %getMCVal(mc,n)
-    execme(das)
+    #execme(das)
 
 toPrint("Total DATA samples",len(data))
 for n in range(len(data)):
     #print getDataKey(data, n)
-    #print getDataVal(data, n)
+    print getDataVal(data, n)
     das = "das_client.py --limit=2000 --query="+"dataset=%s" %getDataVal(data,n)
-    execme(das)
-
+    #execme(das)
 '''
 #CRAB PARAMETERS
 #https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile#CRAB_configuration_parameters
@@ -145,4 +144,4 @@ if isElectrons:
 #ALL T2 PATHS
 file_of_t2_paths.write(str(electrons_MC_t2_paths)+",\n\n")
 file_of_t2_paths.write(str(electrons_Data_t2_paths))
-
+'''

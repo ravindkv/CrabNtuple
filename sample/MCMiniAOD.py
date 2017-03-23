@@ -30,14 +30,14 @@ mcSampDict_ ={
          "QCD_Pt-20to30_EM": "/QCD_Pt-20to30_EMEnriched_TuneCUETP8M1_13TeV_pythia8/"+year+M,
          "QCD_Pt-120to170_EM": "/QCD_Pt-120to170_EMEnriched_TuneCUETP8M1_13TeV_pythia8/"+year+M,
          "QCD_Pt-170to300_EM": "/QCD_Pt-170to300_EMEnriched_TuneCUETP8M1_13TeV_pythia8/"+year+M,
-         "Hplus80": "/ChargedHiggsToCS_M080_13TeV-madgraph/"+year+M,
-         "Hplus90": "/ChargedHiggsToCS_M090_13TeV-madgraph/"+year+M,
-         "Hplus100": "/ChargedHiggsToCS_M100_13TeV-madgraph/"+year+M,
-         "Hplus120": "/ChargedHiggsToCS_M120_13TeV-madgraph/"+year+M,
-         "Hplus140": "/ChargedHiggsToCS_M140_13TeV-madgraph/"+year+M,
-         "Hplus150": "/ChargedHiggsToCS_M150_13TeV-madgraph/"+year+M,
-         "Hplus155": "/ChargedHiggsToCS_M155_13TeV-madgraph/"+year+M,
-         "Hplus160": "/ChargedHiggsToCS_M160_13TeV-madgraph/"+year+M,
+         "HplusM80": "/ChargedHiggsToCS_M080_13TeV-madgraph/"+year+M,
+         "HplusM90": "/ChargedHiggsToCS_M090_13TeV-madgraph/"+year+M,
+         "HplusM100": "/ChargedHiggsToCS_M100_13TeV-madgraph/"+year+M,
+         "HplusM120": "/ChargedHiggsToCS_M120_13TeV-madgraph/"+year+M,
+         "HplusM140": "/ChargedHiggsToCS_M140_13TeV-madgraph/"+year+M,
+         "HplusM150": "/ChargedHiggsToCS_M150_13TeV-madgraph/"+year+M,
+         "HplusM155": "/ChargedHiggsToCS_M155_13TeV-madgraph/"+year+M,
+         "HplusM160": "/ChargedHiggsToCS_M160_13TeV-madgraph/"+year+M,
          }
 
 mcSampDict = collections.OrderedDict(mcSampDict_)
