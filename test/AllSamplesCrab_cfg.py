@@ -12,8 +12,8 @@ import datetime
 
 #IMPORT MODULES FROM OTHER DIR
 sys.path.insert(0, os.getcwd().replace("test","data"))
-from AllDataSamples import dataSampDict as data
-from AllMCSamples import mcSampDict as mc
+from MiniAODSamplesData import dataSampDict as data
+from MiniAODSamplesMC import mcSampDict as mc
 
 sys.path.insert(0, os.getcwd().replace("test","python"))
 from SamplesKeyValue import *
