@@ -11,11 +11,11 @@ import sys
 import datetime
 
 #IMPORT MODULES FROM OTHER DIR
-sys.path.insert(0, os.getcwd().replace("test","data"))
+sys.path.insert(0, os.getcwd().replace("minitree","sample"))
 from AllDataSamples import dataSampDict as data
 from AllMCSamples import mcSampDict as mc
 
-sys.path.insert(0, os.getcwd().replace("test","python"))
+sys.path.insert(0, os.getcwd().replace("minitree","python"))
 from SamplesKeyValue import *
 from MultiCrab import multiCrabSubmit
 
