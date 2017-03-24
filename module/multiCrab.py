@@ -10,7 +10,7 @@ import sys, os
 from CRABAPI.RawCommand import crabCommand
 from CRABClient.ClientExceptions import ClientException
 from httplib import HTTPException
-from SamplesKeyValue import toPrint
+from sampleKeyVal import toPrint
 
 #Documentations about multicrab:
 #https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRABClientLibraryAPI#Example_submitting_multiple_task
