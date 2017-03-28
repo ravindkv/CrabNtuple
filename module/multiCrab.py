@@ -10,7 +10,7 @@ import sys, os
 from CRABAPI.RawCommand import crabCommand
 from CRABClient.ClientExceptions import ClientException
 from httplib import HTTPException
-from sampleKeyVal import toPrint
+from sampleKeyVal import *
 
 #Documentations about multicrab:
 #https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRABClientLibraryAPI#Example_submitting_multiple_task
@@ -37,5 +37,51 @@ def multiCrabSubmit(config, path_T2):
             print "Failed submitting task: %s" % (hte.headers)
         except ClientException as cle:
             print "Failed submitting task: %s" % (cle)
+import os
+def execme(cmd):
+    os.system(cmd)
 
+def createMuMCpsetFile(muMC, ntuple_cfg, mc, m):
+    samp_code = getMCKey(mc, m)
+    t2_ntuple = samp_code+"_"+ muMC+ "_Ntuple.root"
+    pset_file = samp_code+ "_"+ muMC+ "_cfg.py"
+    execme("cp "+ntuple_cfg+ " "+ pset_file)
+    execme('sed -i '+'s/isData=True/isData=False/g'+ " "+ pset_file)
+    execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
+    execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
+    execme('mv '+pset_file+ " config/")
+    print "\033[01;32m"+ " config file created: "+ "\033[00m",  pset_file
+
+def createEleMCpsetFile(eleMC, ntuple_cfg, mc, m):
+    samp_code = getMCKey(mc, m)
+    t2_ntuple = samp_code+"_"+ eleMC+ "_Ntuple.root"
+    pset_file = samp_code+ "_"+ eleMC+ "_cfg.py"
+    execme("cp "+ntuple_cfg+ " "+ pset_file)
+    execme('sed -i '+'s/isData=True/isData=False/g'+ " "+ pset_file)
+    execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
+    execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
+    execme('mv '+pset_file+ " config/")
+    print "\033[01;32m"+ "confing file created: "+ "\033[00m",  pset_file
+
+def createMuDatapsetFile(muData, ntuple_cfg, data, d):
+    samp_code = getDataKey(data, d)
+    t2_ntuple = samp_code+"_"+ muData+ "_Ntuple.root"
+    pset_file = samp_code+ "_"+ muData+ "_cfg.py"
+    execme("cp "+ntuple_cfg+ " "+ pset_file)
+    execme('sed -i '+'s/isData=False/isData=True/g'+ " "+ pset_file)
+    execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
+    execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
+    execme('mv '+pset_file+ " config/")
+    print "\033[01;32m"+ "confing file created: "+ "\033[00m",  pset_file
+
+def createEleDatapsetFile(eleData, ntuple_cfg, data, d):
+    samp_code = getDataKey(data, d)
+    t2_ntuple = samp_code+"_"+ eleData+ "_Ntuple.root"
+    pset_file = samp_code+ "_"+ eleData+ "_cfg.py"
+    execme("cp "+ntuple_cfg+ " "+ pset_file)
+    execme('sed -i '+'s/isData=False/isData=True/g'+ " "+ pset_file)
+    execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
+    execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
+    execme('mv '+pset_file+ " config/")
+    print "\033[01;32m"+ "confing file created: "+ "\033[00m",  pset_file
 

@@ -1,5 +1,5 @@
 import FWCore.ParameterSet.Config as cms
-import collections
+from collections import OrderedDict
 
 # MC Samples of Charged Higgs & Bkg at 13 TeV
 run = "RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6"
@@ -40,4 +40,4 @@ mcSampDict_ ={
          "HplusM160": "/ChargedHiggsToCS_M160_13TeV-madgraph/"+year+M,
          }
 
-mcSampDict = collections.OrderedDict(mcSampDict_)
+mcSampDict= OrderedDict(sorted(mcSampDict_.items(), key=lambda t: t[0]))

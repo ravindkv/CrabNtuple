@@ -1,5 +1,5 @@
 import FWCore.ParameterSet.Config as cms
-import collections
+from collections import OrderedDict
 
 #All Data Samples at 13 TeV
 dataSampDict_ ={
@@ -23,6 +23,5 @@ dataSampDict_ ={
         "MuRunHv2": "/SingleMuon/Run2016H-PromptReco-v2/MINIAOD",
         "MuRunHv3": "/SingleMuon/Run2016H-PromptReco-v3/MINIAOD",
          }
-
-dataSampDict = collections.OrderedDict(dataSampDict_)
+dataSampDict= OrderedDict(sorted(dataSampDict_.items(), key=lambda t: t[0]))
 
