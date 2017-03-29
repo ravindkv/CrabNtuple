@@ -50,7 +50,7 @@ def createMuMCpsetFile(muMC, ntuple_cfg, mc, m):
     execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
     execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
     execme('mv '+pset_file+ " config/")
-    print "\033[01;32m"+ " config file created: "+ "\033[00m",  pset_file
+    #print "\033[01;32m"+ " config file created: "+ "\033[00m",  pset_file
 
 def createEleMCpsetFile(eleMC, ntuple_cfg, mc, m):
     samp_code = getMCKey(mc, m)
@@ -61,7 +61,7 @@ def createEleMCpsetFile(eleMC, ntuple_cfg, mc, m):
     execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
     execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
     execme('mv '+pset_file+ " config/")
-    print "\033[01;32m"+ "confing file created: "+ "\033[00m",  pset_file
+    #print "\033[01;32m"+ "config file created: "+ "\033[00m",  pset_file
 
 def createMuDatapsetFile(muData, ntuple_cfg, data, d):
     samp_code = getDataKey(data, d)
@@ -72,7 +72,7 @@ def createMuDatapsetFile(muData, ntuple_cfg, data, d):
     execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
     execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
     execme('mv '+pset_file+ " config/")
-    print "\033[01;32m"+ "confing file created: "+ "\033[00m",  pset_file
+    #print "\033[01;32m"+ "config file created: "+ "\033[00m",  pset_file
 
 def createEleDatapsetFile(eleData, ntuple_cfg, data, d):
     samp_code = getDataKey(data, d)
@@ -83,5 +83,5 @@ def createEleDatapsetFile(eleData, ntuple_cfg, data, d):
     execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
     execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
     execme('mv '+pset_file+ " config/")
-    print "\033[01;32m"+ "confing file created: "+ "\033[00m",  pset_file
+    #print "\033[01;32m"+ "config file created: "+ "\033[00m",  pset_file
 
