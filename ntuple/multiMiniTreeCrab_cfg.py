@@ -11,11 +11,9 @@ import sys
 import datetime
 
 #IMPORT MODULES FROM OTHER DIR
-sys.path.insert(0, os.getcwd().replace("minitree","sample"))
+sys.path.insert(0, os.getcwd().replace("ntuple","module"))
 from dataMiniAOD import dataSampDict as data
 from mcMiniAOD import mcSampDict as mc
-
-sys.path.insert(0, os.getcwd().replace("minitree","module"))
 from sampleKeyVal import *
 from multiCrab import *
 
@@ -23,7 +21,6 @@ from multiCrab import *
 def execme(cmd):
     print "\033[01;32m"+ "Excecuting: "+ "\033[00m",  cmd
     os.system(cmd)
-'''
 toPrint("Total MC samples",len(mc))
 for n in range(len(mc)):
     #print getMCKey(mc, n)
@@ -145,3 +142,5 @@ if isEle:
 #ALL T2 PATHS
 all_T2Paths.write(str(electrons_MC_t2_paths)+",\n\n")
 all_T2Paths.write(str(electrons_Data_t2_paths))
+
+'''
