@@ -39,16 +39,16 @@ for n in range(len(data)):
     #execme(das)
 '''
 
-#USERS INPUTS
 #-------------------------------
-isMu = False
-isEle = True
+#USERS INPUTS
+isMu = True
+isEle = False
 isMC = True
 isData = False
-#range_MC = len(mc)
-#range_Data = len(data)
-range_MC = 1
-range_Data = 1
+range_MC = len(mc)
+range_Data = len(data)
+#range_MC = 1
+#range_Data = 1
 #-------------------------------
 
 #CRAB PARAMETERS
