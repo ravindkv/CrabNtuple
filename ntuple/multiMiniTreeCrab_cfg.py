@@ -21,6 +21,7 @@ from multiCrab import *
 def execme(cmd):
     print "\033[01;32m"+ "Excecuting: "+ "\033[00m",  cmd
     os.system(cmd)
+'''
 toPrint("Total MC samples",len(mc))
 for n in range(len(mc)):
     #print getMCKey(mc, n)
@@ -39,9 +40,9 @@ for n in range(len(data)):
 #-------------------------------
 #USERS INPUTS
 isMu = True
-isEle = False
+isEle = True
 isMC = True
-isData = False
+isData = True
 range_MC = len(mc)
 range_Data = len(data)
 #range_MC = 1
@@ -143,4 +144,3 @@ if isEle:
 all_T2Paths.write(str(electrons_MC_t2_paths)+",\n\n")
 all_T2Paths.write(str(electrons_Data_t2_paths))
 
-'''
