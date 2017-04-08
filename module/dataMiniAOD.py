@@ -3,6 +3,7 @@ from collections import OrderedDict
 
 #All Data Samples at 13 TeV
 dataSampDict_ ={
+        "MuRunBv1": "/SingleMuon/Run2016B-23Sep2016-v1/MINIAOD",
         "EleRunBver2v2": "/SingleElectron/Run2016B-03Feb2017_ver2-v2/MINIAOD",
         "EleRunCv1": "/SingleElectron/Run2016C-03Feb2017-v1/MINIAOD",
         "EleRunDv1": "/SingleElectron/Run2016D-03Feb2017-v1/MINIAOD",
@@ -11,7 +12,6 @@ dataSampDict_ ={
         "EleRunGv1": "/SingleElectron/Run2016G-03Feb2017-v1/MINIAOD",
         "EleRunHver2v1": "/SingleElectron/Run2016H-03Feb2017_ver2-v1/MINIAOD",
         "EleRunHver3v1": "/SingleElectron/Run2016H-03Feb2017_ver3-v1/MINIAOD",
-        "MuRunBv1": "/SingleMuon/Run2016B-23Sep2016-v1/MINIAOD",
         "MuRunBv2": "/SingleMuon/Run2016B-23Sep2016-v2/MINIAOD",
         "MuRunBv3": "/SingleMuon/Run2016B-23Sep2016-v3/MINIAOD",
         "MuRunCv1": "/SingleMuon/Run2016C-23Sep2016-v1/MINIAOD",

@@ -43,10 +43,10 @@ isMu = True
 isEle = True
 isMC = True
 isData = True
-range_MC = len(mc)
-range_Data = len(data)
-#range_MC = 1
-#range_Data = 1
+#range_MC = len(mc)
+#range_Data = len(data)
+range_MC = 2
+range_Data = 1
 #-------------------------------
 
 #CRAB PARAMETERS
@@ -61,7 +61,7 @@ config.JobType.allowUndistributedCMSSW = True
 config.JobType.pluginName = 'Analysis'
 #config.JobType.disableAutomaticOutputCollection = True
 config.Data.inputDBS = 'global'
-config.Data.unitsPerJob = 10
+config.Data.unitsPerJob = 1
 config.Data.splitting = 'FileBased'
 config.Data.ignoreLocality = True
 config.Site.storageSite = 'T2_IN_TIFR'

@@ -10,6 +10,7 @@ M = "/MINIAODSIM"
 
 mcSampDict_ ={
         "TTJets": "/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
+         "HplusM120": "/ChargedHiggsToCS_M120_13TeV-madgraph/"+year+M,
          "ST_tW": "/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
          "ST_t": "/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
          "ST_s": "/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8/"+year+M,
@@ -33,7 +34,6 @@ mcSampDict_ ={
          "HplusM80": "/ChargedHiggsToCS_M080_13TeV-madgraph/"+year+M,
          "HplusM90": "/ChargedHiggsToCS_M090_13TeV-madgraph/"+year+M,
          "HplusM100": "/ChargedHiggsToCS_M100_13TeV-madgraph/"+year+M,
-         "HplusM120": "/ChargedHiggsToCS_M120_13TeV-madgraph/"+year+M,
          "HplusM140": "/ChargedHiggsToCS_M140_13TeV-madgraph/"+year+M,
          "HplusM150": "/ChargedHiggsToCS_M150_13TeV-madgraph/"+year+M,
          "HplusM155": "/ChargedHiggsToCS_M155_13TeV-madgraph/"+year+M,

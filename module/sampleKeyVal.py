@@ -40,11 +40,11 @@ def getDataKey(data, n):
         return key
     '''
 def getLFNDirBaseMC(lable, mc, m):
-    outLFNDirBase = '/store/user/rverma/multicrab_29march17/'+ lable+ '/'+getMCKey(mc, m)+"_"+ lable
+    outLFNDirBase = '/store/user/rverma/multicrab_08april17/'+ lable+ '/'+getMCKey(mc, m)+"_"+ lable
     return outLFNDirBase
 
 def getLFNDirBaseData(lable, data, m):
-    outLFNDirBase = '/store/user/rverma/multicrab_29march17/'+ lable+ '/'+getDataKey(data, m)+"_"+ lable
+    outLFNDirBase = '/store/user/rverma/multicrab_08april17/'+ lable+ '/'+getDataKey(data, m)+"_"+ lable
     return outLFNDirBase
 
 #PATHS OF NTUPLE AT T2_IN_TIFR
@@ -59,7 +59,7 @@ def getNtupleT2Paths(lable, samp, n):
     '''
     crab_dir = lable
     crab_subdir = getMCKey(samp, n) +"_"+lable
-    t2user_dir = '/store/user/rverma/multicrab_29march17/'
+    t2user_dir = '/store/user/rverma/multicrab_08april17/'
     t2crab_dir = crab_dir+'/'+crab_subdir
     t2samp_name = "/"+getMCVal(samp, n).split("/")[1]
     t2samp_subdir = "/"+crab_subdir
