@@ -69,40 +69,39 @@ def mergeNtuples(T2Paths, range_):
         print pathT2
 
         #local dir at T3 for the samples
-        dirT3 = pathT2.split("/")[-4]
+        #dirT3 = pathT2.split("/")[-4]
         sampT3dir = pathT2.split("/")[-1]
 
+        ############### COPY ###################
         #command to be excecuted to merge ntuples
         cmdT3 = []
-        cmdT3.append("mkdir %s" % dirT3)
-        cmdT3.append("cd %s" % dirT3)
+        #cmdT3.append("mkdir %s" % sampT3dir)
+        #cmdT3.append("cd %s" % sampT3dir)
         cmdT3.append("mkdir %s" % sampT3dir)
         cmdT3.append("cd %s" % sampT3dir)
 
         #copy files from T2 to T3, get the last dir contaning ntuples
         cmdT3.append("xrdcp -r root://se01.indiacms.res.in:1094/"+pathT2+" .")
-        print sampT3dir
+        cmdT3_comb = ''
+        for cmd in cmdT3:
+            if cmd!=cmdT3[-1]:
+                cmdT3_comb += cmd +" && "
+            else:
+                cmdT3_comb += cmd
+        execme(cmdT3_comb)
+        print  "\033[01;32m"+" Ntuples copied !""\033[00m"
+
+        ################## MERGE #################
+        cmdT3 = []
         for x in os.walk(sampT3dir):
             dirNtup = x[0].replace("failed","")
         print dirNtup
-        '''
-            for x in os.walk(x[0]):
-                print x[0]
-
-                pass
-                #get the 0000 directory
-                dirNtup = x[0].replace("failed","")
-                print dirNtup
-                print dirNtup
-        '''
         #total number of ntuple files
         tot_files = len([name for name in os.listdir(dirNtup)])
         merged_ntuple = sampT3dir+ "_Ntuple_Merged.root"
         cmdT3.append("cd %s" %dirNtup)
         #merge all the ntuples by hadd command
-        #cmdT3.append("echo "+ "\033[01;32m"+" merging ntuples, please wait ..."+"\033[00m")
-        cmdT3.append("hadd -k "+ merged_ntuple+ sampT3dir+"_Ntuple_{1.."+str(tot_files)+"}.root")
-        #cmdT3.append("echo "+"\033[01;32m"+"merging done !" +"\033[00m")
+        cmdT3.append("hadd -k "+ merged_ntuple+" "+ sampT3dir+"_Ntuple_{1.."+str(tot_files)+"}.root")
 
         #move the merged ntuple to back to T2
         #cmdT3.append("echo "+ "\033[01;32m"+"moving merged ntuple, back to T2 ..."+"\033[00m")
@@ -117,6 +116,7 @@ def mergeNtuples(T2Paths, range_):
             else:
                 cmdT3_comb += cmd
         execme(cmdT3_comb)
+        print "\033[01;32m"+"merging done !" "\033[00m"
 
 #muon channel
 if isMuon:
