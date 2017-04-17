@@ -12,16 +12,18 @@ import datetime
 
 #IMPORT MODULES FROM OTHER DIR
 sys.path.insert(0, os.getcwd().replace("ntuple","module"))
-from dataMiniAOD import dataSampDict as data
+from dataMiniAOD import muDataSampDict as muData
+from dataMiniAOD import eleDataSampDict as eleData
 from mcMiniAOD import mcSampDict as mc
 from sampleKeyVal import *
 from multiCrab import *
 
 #Check availability of samples on DAS
+"""
 def execme(cmd):
     print "\033[01;32m"+ "Excecuting: "+ "\033[00m",  cmd
     os.system(cmd)
-'''
+
 toPrint("Total MC samples",len(mc))
 for n in range(len(mc)):
     #print getMCKey(mc, n)
@@ -29,24 +31,33 @@ for n in range(len(mc)):
     das = "das_client.py --limit=1 --query=\"file dataset=%s\"" %getMCVal(mc, n)
     #execme(das)
 
-toPrint("Total DATA samples",len(data))
-for n in range(len(data)):
+toPrint("Total single muon DATA samples",len(muData))
+for n in range(len(muData)):
     #print getDataKey(data, n)
-    print getDataVal(data, n)
-    das = "das_client.py --limit=1 --query=\"file dataset=%s\"" %getDataVal(data, n)
+    print getDataVal(muData, n)
+    das = "das_client.py --limit=1 --query=\"file dataset=%s\"" %getDataVal(muData, n)
     #execme(das)
-'''
+
+toPrint("Total single electron DATA samples",len(eleData))
+for n in range(len(eleData)):
+    #print getDataKey(data, n)
+    print getDataVal(eleData, n)
+    das = "das_client.py --limit=1 --query=\"file dataset=%s\"" %getDataVal(eleData, n)
+    #execme(das)
+"""
 
 #-------------------------------
 #USERS INPUTS
 isMu = True
-isEle = True
-isMC = True
-isData = True
-#range_MC = len(mc)
+isEle = False
+isMC = False
+isMuData = True
+isEleData = False
+range_MC = len(mc)
 #range_Data = len(data)
-range_MC = 2
-range_Data = 1
+#range_MC = 2
+range_muData = len(muData)
+range_eleData = 1
 #-------------------------------
 
 #CRAB PARAMETERS
@@ -61,8 +72,9 @@ config.JobType.allowUndistributedCMSSW = True
 config.JobType.pluginName = 'Analysis'
 #config.JobType.disableAutomaticOutputCollection = True
 config.Data.inputDBS = 'global'
-config.Data.unitsPerJob = 1
+config.Data.unitsPerJob = 10
 config.Data.splitting = 'FileBased'
+config.JobType.maxMemoryMB = 4000
 config.Data.ignoreLocality = True
 config.Site.storageSite = 'T2_IN_TIFR'
 
@@ -88,20 +100,20 @@ if isMu:
             multiCrabSubmit(config, config.Data.outLFNDirBase)
             muMC_T2Paths.append(getNtupleT2Paths(mu_MC, mc, m))
 
-    if isData:
+    if isMuData:
         #toPrint("MUONS, DATA ","")
-        for d in range(range_Data):
+        for d in range(range_muData):
             mu_Data = "MuData_"+ date
-            createMuDatapsetFile(mu_Data, "../../MiniTree/Selection/test/muonNtuple_cfg.py", data, d)
-            config.General.requestName = getDataKey(data, d) +"_"+mu_Data
+            createMuDatapsetFile(mu_Data, "../../MiniTree/Selection/test/muonNtuple_cfg.py", muData, d)
+            config.General.requestName = getDataKey(muData, d) +"_"+mu_Data
             config.General.workArea = 'Crab'+mu_Data
             config.JobType.psetName = 'config/'+config.General.requestName+ "_cfg.py"
-            config.Data.inputDataset = getDataVal(data, d)
-            config.Data.outLFNDirBase = getLFNDirBaseData(mu_Data, data, d)
-            #config.JobType.outputFiles = [getDataKey(data, d)+ mu_Data+ "_Ntuple.root" ]
-            #config.JobType.pyCfgParams = ["sampleCode="+getDataKey(data, d)]
+            config.Data.inputDataset = getDataVal(muData, d)
+            config.Data.outLFNDirBase = getLFNDirBaseData(mu_Data, muData, d)
+            #config.JobType.outputFiles = [getDataKey(muData, d)+ mu_Data+ "_Ntuple.root" ]
+            #config.JobType.pyCfgParams = ["sampleCode="+getDataKey(muData, d)]
             multiCrabSubmit(config, config.Data.outLFNDirBase)
-            muData_T2Paths.append(getNtupleT2Paths(mu_Data, data, d))
+            muData_T2Paths.append(getNtupleT2Paths(mu_Data, muData, d))
 
 all_T2Paths.write(str(muMC_T2Paths)+",\n\n")
 all_T2Paths.write(str(muData_T2Paths)+",\n\n")
@@ -125,19 +137,19 @@ if isEle:
             multiCrabSubmit(config, config.Data.outLFNDirBase)
             electrons_MC_t2_paths.append(getNtupleT2Paths(ele_MC, mc, m))
 
-    if isData:
+    if isEleData:
         #toPrint("ELECTRONS, DATA ","")
-        for d in range(range_Data):
+        for d in range(range_eleData):
             ele_Data = "EleData_"+ date
-            createEleDatapsetFile(ele_Data, "../../MiniTree/Selection/test/electronNtuple_cfg.py", data, d)
-            config.General.requestName = getDataKey(data, d) + "_"+ele_Data
+            createEleDatapsetFile(ele_Data, "../../MiniTree/Selection/test/electronNtuple_cfg.py", eleData, d)
+            config.General.requestName = getDataKey(eleData, d) + "_"+ele_Data
             config.General.workArea = 'Crab' +ele_Data
             config.JobType.psetName = 'config/'+config.General.requestName+ "_cfg.py"
-            config.Data.inputDataset = getDataVal(data, d)
-            config.Data.outLFNDirBase = getLFNDirBaseData(ele_Data, data, d)
-            #config.JobType.outputFiles = [getDataKey(data, d)+ ele_Data+ "_Ntuple.root" ]
-            #config.JobType.pyCfgParams = ["sampleCode="+getDataKey(data, d)]
-            electrons_Data_t2_paths.append(getNtupleT2Paths(ele_Data, data, d))
+            config.Data.inputDataset = getDataVal(eleData, d)
+            config.Data.outLFNDirBase = getLFNDirBaseData(ele_Data, eleData, d)
+            #config.JobType.outputFiles = [getDataKey(eleData, d)+ ele_Data+ "_Ntuple.root" ]
+            #config.JobType.pyCfgParams = ["sampleCode="+getDataKey(eleData, d)]
+            electrons_Data_t2_paths.append(getNtupleT2Paths(ele_Data, eleData, d))
             multiCrabSubmit(config, config.Data.outLFNDirBase)
 
 #ALL T2 PATHS

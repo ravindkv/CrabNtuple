@@ -18,8 +18,8 @@ import datetime
 #USERS INPUTS
 #-------------------------------
 isMuon = True
-isElectron = True
-isMC = True
+isElectron = False
+isMC = False
 isData = True
 #range_muMC = len(muMC_T2Paths)
 #range_muData = len(muData_T2Paths)
@@ -44,7 +44,7 @@ def getSampName(line, sampName, sampPaths):
         for n in range(1, len(s1)-1):
             sampPaths.append(s1[n].replace(" ",""))
 
-for line in open("NtupleT2Paths_20170318.txt"):
+for line in open("ntupleT2Paths_20170417.txt"):
     line = line.strip()
     if len(line)!=0:
         getSampName(line, "MUON MC", muMC_T2Paths)
@@ -59,50 +59,64 @@ def execme(command):
     print ""
     os.system(command)
 
+#T2 path of one sample
+#/cms/store/user/rverma/multicrab_09april17/MuMC_20170409/TTJets_MuMC_20170409/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/TTJets_MuMC_20170409
+
 #read T2 Paths of ntuples, merge them, send merged file back to T2
 def mergeNtuples(T2Paths, range_):
     for m in range(range_):
-        path_T2 = T2Paths[m].replace("'","")
-        print path_T2
+        pathT2 = T2Paths[m].replace("'","")
+        print pathT2
 
-        #local dir at T3 for the CRAB, samples
-        dir_T3 = path_T2.split("/")[-4]
-        dir_samp_T3 = path_T2.split("/")[-1]
+        #local dir at T3 for the samples
+        dirT3 = pathT2.split("/")[-4]
+        sampT3dir = pathT2.split("/")[-1]
 
         #command to be excecuted to merge ntuples
-        cmd_T3 = []
-        cmd_T3.append("mkdir %s" % dir_T3)
-        cmd_T3.append("cd %s" % dir_T3)
-        cmd_T3.append("mkdir %s" % dir_samp_T3)
-        cmd_T3.append("cd %s" % dir_samp_T3)
+        cmdT3 = []
+        cmdT3.append("mkdir %s" % dirT3)
+        cmdT3.append("cd %s" % dirT3)
+        cmdT3.append("mkdir %s" % sampT3dir)
+        cmdT3.append("cd %s" % sampT3dir)
 
-        #copy files from T2 to T3, get the last dir containg ntuples
-        cmd_T3.append("xrdcp -r root://se01.indiacms.res.in:1094/"+path_T2+" .")
-        for x in os.walk(dir_samp_T3):
+        #copy files from T2 to T3, get the last dir contaning ntuples
+        cmdT3.append("xrdcp -r root://se01.indiacms.res.in:1094/"+pathT2+" .")
+        print sampT3dir
+        for x in os.walk(sampT3dir):
+            dirNtup = x[0].replace("failed","")
+        print dirNtup
+        '''
             for x in os.walk(x[0]):
+                print x[0]
+
                 pass
-        print x[0]
-
+                #get the 0000 directory
+                dirNtup = x[0].replace("failed","")
+                print dirNtup
+                print dirNtup
+        '''
         #total number of ntuple files
-        tot_files = len([name for name in os.listdir(x[0])])
-        merged_ntuple = dir_samp_T3+ "_Ntuple_Merged.root"
-        cmd_T3.append("cd %s" %x[0])
-
+        tot_files = len([name for name in os.listdir(dirNtup)])
+        merged_ntuple = sampT3dir+ "_Ntuple_Merged.root"
+        cmdT3.append("cd %s" %dirNtup)
         #merge all the ntuples by hadd command
-        cmd_T3.append("hadd -k "+ merged_ntuple+ dir_samp_T3+"_Ntuple_{1.."+str(tot_files)+"}.root")
+        #cmdT3.append("echo "+ "\033[01;32m"+" merging ntuples, please wait ..."+"\033[00m")
+        cmdT3.append("hadd -k "+ merged_ntuple+ sampT3dir+"_Ntuple_{1.."+str(tot_files)+"}.root")
+        #cmdT3.append("echo "+"\033[01;32m"+"merging done !" +"\033[00m")
 
         #move the merged ntuple to back to T2
-        cmd_T3.append("xrdcp -r "+merged_ntuple+ " root://se01.indiacms.res.in:1094/"+path_T2)
-        cmd_T3.append("rm -r *")
+        #cmdT3.append("echo "+ "\033[01;32m"+"moving merged ntuple, back to T2 ..."+"\033[00m")
+        cmdT3.append("xrdcp -r "+merged_ntuple+ " root://se01.indiacms.res.in:1094/"+pathT2)
+        cmdT3.append("rm -r *")
 
         #execute all the commands, in one go
-        cmd_T3_comb = ''
-        for cmd in cmd_T3:
-            if cmd!=cmd_T3[-1]:
-                cmd_T3_comb += cmd +" && "
+        cmdT3_comb = ''
+        for cmd in cmdT3:
+            if cmd!=cmdT3[-1]:
+                cmdT3_comb += cmd +" && "
             else:
-                cmd_T3_comb += cmd
-        execme(cmd_T3_comb)
+                cmdT3_comb += cmd
+        execme(cmdT3_comb)
 
 #muon channel
 if isMuon:

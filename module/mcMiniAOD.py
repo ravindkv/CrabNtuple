@@ -8,6 +8,12 @@ yext1_v1 = run +"_ext1-v1"
 yext1_v2 = run +"_ext1-v2"
 M = "/MINIAODSIM"
 
+'''
+mcSampDict_ ={
+        "TTJets": "/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
+         "HplusM120": "/ChargedHiggsToCS_M120_13TeV-madgraph/"+year+M
+         }
+'''
 mcSampDict_ ={
         "TTJets": "/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
          "HplusM120": "/ChargedHiggsToCS_M120_13TeV-madgraph/"+year+M,
@@ -38,6 +44,5 @@ mcSampDict_ ={
          "HplusM150": "/ChargedHiggsToCS_M150_13TeV-madgraph/"+year+M,
          "HplusM155": "/ChargedHiggsToCS_M155_13TeV-madgraph/"+year+M,
          "HplusM160": "/ChargedHiggsToCS_M160_13TeV-madgraph/"+year+M,
-         }
-
+        }
 mcSampDict= OrderedDict(sorted(mcSampDict_.items(), key=lambda t: t[0]))
