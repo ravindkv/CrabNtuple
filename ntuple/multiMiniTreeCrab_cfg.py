@@ -19,7 +19,6 @@ from sampleKeyVal import *
 from multiCrab import *
 
 #Check availability of samples on DAS
-"""
 def execme(cmd):
     print "\033[01;32m"+ "Excecuting: "+ "\033[00m",  cmd
     os.system(cmd)
@@ -27,24 +26,23 @@ def execme(cmd):
 toPrint("Total MC samples",len(mc))
 for n in range(len(mc)):
     #print getMCKey(mc, n)
-    print getMCVal(mc, n)
+    #print getMCVal(mc, n)
     das = "das_client.py --limit=1 --query=\"file dataset=%s\"" %getMCVal(mc, n)
     #execme(das)
 
 toPrint("Total single muon DATA samples",len(muData))
 for n in range(len(muData)):
     #print getDataKey(data, n)
-    print getDataVal(muData, n)
+    #print getDataVal(muData, n)
     das = "das_client.py --limit=1 --query=\"file dataset=%s\"" %getDataVal(muData, n)
     #execme(das)
 
 toPrint("Total single electron DATA samples",len(eleData))
 for n in range(len(eleData)):
     #print getDataKey(data, n)
-    print getDataVal(eleData, n)
+    #print getDataVal(eleData, n)
     das = "das_client.py --limit=1 --query=\"file dataset=%s\"" %getDataVal(eleData, n)
     #execme(das)
-"""
 
 #-------------------------------
 #USERS INPUTS
@@ -72,7 +70,7 @@ config.JobType.allowUndistributedCMSSW = True
 config.JobType.pluginName = 'Analysis'
 #config.JobType.disableAutomaticOutputCollection = True
 config.Data.inputDBS = 'global'
-config.Data.unitsPerJob = 10
+config.Data.unitsPerJob = 20
 config.Data.splitting = 'FileBased'
 config.JobType.maxMemoryMB = 4000
 config.Data.ignoreLocality = True
@@ -108,6 +106,8 @@ if isMu:
             config.General.requestName = getDataKey(muData, d) +"_"+mu_Data
             config.General.workArea = 'Crab'+mu_Data
             config.JobType.psetName = 'config/'+config.General.requestName+ "_cfg.py"
+            #config.Data.lumiMask = "https://cms-service-dqm.web.cern.ch/cms-service-dqm/CAF/certification/Collisions16/13TeV/ReReco/Final/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON_MuonPhys.txt"
+            config.Data.lumiMask = "https://cms-service-dqm.web.cern.ch/cms-service-dqm/CAF/certification/Collisions16/13TeV/ReReco/Final/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
             config.Data.inputDataset = getDataVal(muData, d)
             config.Data.outLFNDirBase = getLFNDirBaseData(mu_Data, muData, d)
             #config.JobType.outputFiles = [getDataKey(muData, d)+ mu_Data+ "_Ntuple.root" ]

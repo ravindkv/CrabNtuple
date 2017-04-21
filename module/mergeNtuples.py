@@ -89,7 +89,7 @@ def mergeNtuples(T2Paths, range_):
             else:
                 cmdT3_comb += cmd
         execme(cmdT3_comb)
-        print  "\033[01;32m"+" Ntuples copied !""\033[00m"
+        print  "\033[01;32m"+"Ntuples copied !""\033[00m"
 
         ################## MERGE #################
         cmdT3 = []
