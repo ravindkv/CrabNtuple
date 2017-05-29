@@ -1,7 +1,0 @@
-['MUON MC:'],
-
-['MUON DATA:', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunBv1_MuData_20170420/SingleMuon/MuRunBv1_MuData_20170420', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunBv2_MuData_20170420/SingleMuon/MuRunBv2_MuData_20170420', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunBv3_MuData_20170420/SingleMuon/MuRunBv3_MuData_20170420', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunCv1_MuData_20170420/SingleMuon/MuRunCv1_MuData_20170420', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunDv1_MuData_20170420/SingleMuon/MuRunDv1_MuData_20170420', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunEv1_MuData_20170420/SingleMuon/MuRunEv1_MuData_20170420', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunFv1_MuData_20170420/SingleMuon/MuRunFv1_MuData_20170420', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunGv1_MuData_20170420/SingleMuon/MuRunGv1_MuData_20170420', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunHv1_MuData_20170420/SingleMuon/MuRunHv1_MuData_20170420', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunHv2_MuData_20170420/SingleMuon/MuRunHv2_MuData_20170420', '/cms/store/user/rverma/multicrab_20april17/MuData_20170420/MuRunHv3_MuData_20170420/SingleMuon/MuRunHv3_MuData_20170420'],
-
-['ELECTRON MC:'],
-
-['ELECTRON DATA:']

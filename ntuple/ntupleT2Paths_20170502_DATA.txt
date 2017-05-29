@@ -1,7 +1,0 @@
-['MUON MC:'],
-
-['MUON DATA:', '/cms/store/user/rverma/multicrab_02May17/MuData_20170502/MuRunB2v2_MuData_20170502/SingleMuon/MuRunB2v2_MuData_20170502', '/cms/store/user/rverma/multicrab_02May17/MuData_20170502/MuRunCv1_MuData_20170502/SingleMuon/MuRunCv1_MuData_20170502', '/cms/store/user/rverma/multicrab_02May17/MuData_20170502/MuRunDv1_MuData_20170502/SingleMuon/MuRunDv1_MuData_20170502', '/cms/store/user/rverma/multicrab_02May17/MuData_20170502/MuRunEv1_MuData_20170502/SingleMuon/MuRunEv1_MuData_20170502', '/cms/store/user/rverma/multicrab_02May17/MuData_20170502/MuRunFv1_MuData_20170502/SingleMuon/MuRunFv1_MuData_20170502', '/cms/store/user/rverma/multicrab_02May17/MuData_20170502/MuRunGv1_MuData_20170502/SingleMuon/MuRunGv1_MuData_20170502', '/cms/store/user/rverma/multicrab_02May17/MuData_20170502/MuRunH2v1_MuData_20170502/SingleMuon/MuRunH2v1_MuData_20170502', '/cms/store/user/rverma/multicrab_02May17/MuData_20170502/MuRunH3v1_MuData_20170502/SingleMuon/MuRunH3v1_MuData_20170502'],
-
-['ELECTRON MC:'],
-
-['ELECTRON DATA:']
