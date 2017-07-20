@@ -30,6 +30,7 @@ mcSampDict_ ={
          "QCD_Pt-80to120_Mu": "/QCD_Pt-80to120_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/"+year+M,
          "QCD_Pt-120to170_Mu": "/QCD_Pt-120to170_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/"+year+M,
          "QCD_Pt-170to300_Mu": "/QCD_Pt-170to300_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/"+year+M,
+         "QCD_Pt-300to470_Mu": "/QCD_Pt-300to470_MuEnrichedPt5_TuneCUETP8M1_13TeV_pythia8/"+year+M,
          "WW": "/WW_TuneCUETP8M1_13TeV-pythia8/"+year+M,
          "WZ": "/WZ_TuneCUETP8M1_13TeV-pythia8/"+year+M,
          "ZZ": "/ZZ_TuneCUETP8M1_13TeV-pythia8/"+year+M,
@@ -40,7 +41,7 @@ mcSampDict_ ={
          "HplusM140": "/ChargedHiggsToCS_M140_13TeV-madgraph/"+year+M,
          "HplusM150": "/ChargedHiggsToCS_M150_13TeV-madgraph/"+year+M,
          "HplusM155": "/ChargedHiggsToCS_M155_13TeV-madgraph/"+year+M,
-         "HplusM160": "/ChargedHiggsToCS_M160_13TeV-madgraph/"+year+M,
+         "HplusM160": "/ChargedHiggsToCS_M160_13TeV-madgraph/"+year+M
         }
 mcSampDict= OrderedDict(sorted(mcSampDict_.items(), key=lambda t: t[0]))
 

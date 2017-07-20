@@ -35,24 +35,26 @@ isEle = False
 range_eleData = 1
 
 def statusMuMC(mc, m):
-    crab_dir = "CrabMuMC_20170528"
+    crab_dir = "CrabMuMC_20170717"
     crab_subdir = "crab_"+getMCKey(mc, m)+"_MuMC_"+crab_dir.split("_")[1]
     execme("echo  ")
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     execme("echo NEXT SAMPLE : "+crab_subdir)
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
+    #execme("crab kill -d "+crab_dir+"/"+crab_subdir)
     #execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
 
 def statusMuData(muData, d):
-    crab_dir = "CrabMuData_20170528"
+    crab_dir = "CrabMuData_20170717"
     crab_subdir = "crab_"+getDataKey(muData, d)+"_MuData_"+crab_dir.split("_")[1]
     execme("echo  ")
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     execme("echo NEXT SAMPLE : "+crab_subdir)
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
-    #execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
+    #execme("crab kill -d "+crab_dir+"/"+crab_subdir)
     execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
+    #execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
     #execme("crab report "+crab_dir+"/"+crab_subdir)
     #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/lumisToProcess.json")
     #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/processedLumis.json")
