@@ -24,7 +24,7 @@ def execme(cmd):
 
 #USERS INPUTS
 isMu = True
-isMC = True
+isMC = False
 isData = True
 range_MC = len(mc)
 range_muData = len(muData)
@@ -53,11 +53,11 @@ def statusMuData(muData, d):
     execme("echo NEXT SAMPLE : "+crab_subdir)
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     #execme("crab kill -d "+crab_dir+"/"+crab_subdir)
-    execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
+    #execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
     #execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
-    #execme("crab report "+crab_dir+"/"+crab_subdir)
-    #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/lumisToProcess.json")
-    #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/processedLumis.json")
+    execme("crab report "+crab_dir+"/"+crab_subdir)
+    execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/lumisToProcess.json")
+    execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/processedLumis.json")
     #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/notFinishedLumis.json")
 
 def statusEleMC(mc, m):
@@ -75,9 +75,9 @@ def statusEleData(eleData, d):
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     crab_subdir = "crab_"+getDataKey(eleData, d)+"_EleData_"+crab_dir.split("_")[1]
     execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
-    execme("crab report "+crab_dir+"/"+crab_subdir)
-    execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/lumisToProcess.json")
-    execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/processedLumis.json")
+    #execme("crab report "+crab_dir+"/"+crab_subdir)
+    #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/lumisToProcess.json")
+    #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/processedLumis.json")
     #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/notFinishedLumis.json")
 
 if isMu:
