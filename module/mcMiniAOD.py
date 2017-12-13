@@ -9,7 +9,21 @@ yext1_v2 = run +"_ext1-v2"
 M = "/MINIAODSIM"
 
 mcSampDict_ ={
-        "TTJets": "/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
+        "TTJetsP_up": "/TT_TuneCUETP8M2T4up_13TeV-powheg-pythia8/"+year+M,
+        "TTJetsP_down": "/TT_TuneCUETP8M2T4down_13TeV-powheg-pythia8/"+year+M,
+        "TTJetsP_isrup": "/TT_TuneCUETP8M2T4_13TeV-powheg-isrup-pythia8/"+yext1_v1+M,
+        "TTJetsP_fsrup": "/TT_TuneCUETP8M2T4_13TeV-powheg-fsrup-pythia8/"+year+M,
+        "TTJetsP_isrdown": "/TT_TuneCUETP8M2T4_13TeV-powheg-isrdown-pythia8/"+year+M,
+        "TTJetsP_fsrdown": "/TT_TuneCUETP8M2T4_13TeV-powheg-fsrdown-pythia8/"+year+M,
+        "TTJetsP_hdampUP": "/TT_hdampUP_TuneCUETP8M2T4_13TeV-powheg-pythia8/"+year+M,
+        "TTJetsP_hdampDOWN": "/TT_hdampDOWN_TuneCUETP8M2T4_13TeV-powheg-pythia8/"+year+M
+        }
+mcSampDict= OrderedDict(sorted(mcSampDict_.items(), key=lambda t: t[0]))
+
+'''
+mcSampDict_ ={
+        "TTJetsM": "/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
+        "TTJetsP": "/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/"+year+M,
          "ST_tW": "/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
          "ST_t": "/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
          "ST_s": "/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8/"+year+M,
@@ -44,11 +58,12 @@ mcSampDict_ ={
          "HplusM160": "/ChargedHiggsToCS_M160_13TeV-madgraph/"+year+M
         }
 mcSampDict= OrderedDict(sorted(mcSampDict_.items(), key=lambda t: t[0]))
-
+'''
 
 '''
 eleMCSampDict_ ={
-        "TTJets": "/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
+        "TTJetsM": "/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
+        "TTJetsP": "/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/"+year+M,
          "ST_tW": "/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
          "ST_t": "/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
          "ST_s": "/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8/"+year+M,

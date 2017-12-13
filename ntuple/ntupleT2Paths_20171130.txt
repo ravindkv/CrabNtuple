@@ -1,0 +1,7 @@
+['MUON MC:', '/cms/store/user/rverma/ntuple_MuMC_kfitM_20171130/MuMC_20171130/TTJetsP_down_MuMC_20171130/TT_TuneCUETP8M2T4down_13TeV-powheg-pythia8/TTJetsP_down_MuMC_20171130', '/cms/store/user/rverma/ntuple_MuMC_kfitM_20171130/MuMC_20171130/TTJetsP_fsrdown_MuMC_20171130/TT_TuneCUETP8M2T4_13TeV-powheg-fsrdown-pythia8/TTJetsP_fsrdown_MuMC_20171130', '/cms/store/user/rverma/ntuple_MuMC_kfitM_20171130/MuMC_20171130/TTJetsP_fsrup_MuMC_20171130/TT_TuneCUETP8M2T4_13TeV-powheg-fsrup-pythia8/TTJetsP_fsrup_MuMC_20171130', '/cms/store/user/rverma/ntuple_MuMC_kfitM_20171130/MuMC_20171130/TTJetsP_hdampDOWN_MuMC_20171130/TT_hdampDOWN_TuneCUETP8M2T4_13TeV-powheg-pythia8/TTJetsP_hdampDOWN_MuMC_20171130', '/cms/store/user/rverma/ntuple_MuMC_kfitM_20171130/MuMC_20171130/TTJetsP_hdampUP_MuMC_20171130/TT_hdampUP_TuneCUETP8M2T4_13TeV-powheg-pythia8/TTJetsP_hdampUP_MuMC_20171130', '/cms/store/user/rverma/ntuple_MuMC_kfitM_20171130/MuMC_20171130/TTJetsP_isrdown_MuMC_20171130/TT_TuneCUETP8M2T4_13TeV-powheg-isrdown-pythia8/TTJetsP_isrdown_MuMC_20171130', '/cms/store/user/rverma/ntuple_MuMC_kfitM_20171130/MuMC_20171130/TTJetsP_isrup_MuMC_20171130/TT_TuneCUETP8M2T4_13TeV-powheg-isrup-pythia8/TTJetsP_isrup_MuMC_20171130', '/cms/store/user/rverma/ntuple_MuMC_kfitM_20171130/MuMC_20171130/TTJetsP_up_MuMC_20171130/TT_TuneCUETP8M2T4up_13TeV-powheg-pythia8/TTJetsP_up_MuMC_20171130'],
+
+['MUON DATA:'],
+
+['ELECTRON MC:'],
+
+['ELECTRON DATA:']

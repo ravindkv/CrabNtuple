@@ -24,40 +24,43 @@ def execme(cmd):
 
 #USERS INPUTS
 isMu = True
-isMC = False
-isData = True
-range_MC = len(mc)
+isMuMC = True
+isMuData = False
+range_MuMC = len(mc)
 range_muData = len(muData)
+
 isEle = False
-#range_eleData = len(eleData)
-#range_MC = 1
-#range_muData = 4
-range_eleData = 1
+isEleMC = False
+isEleData = False
+range_EleMC = len(mc)
+range_eleData = len(eleData)
 
 def statusMuMC(mc, m):
-    crab_dir = "CrabMuMC_20170717"
+    crab_dir = "CrabMuMC_20171130"
     crab_subdir = "crab_"+getMCKey(mc, m)+"_MuMC_"+crab_dir.split("_")[1]
     execme("echo  ")
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     execme("echo NEXT SAMPLE : "+crab_subdir)
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
+    #execme("crab status "+crab_dir+"/"+crab_subdir)
     execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
+    #execme("crab resubmit "+crab_dir+"/"+crab_subdir)
     #execme("crab kill -d "+crab_dir+"/"+crab_subdir)
-    #execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
 
 def statusMuData(muData, d):
-    crab_dir = "CrabMuData_20170717"
+    crab_dir = "CrabMuData_20171119"
     crab_subdir = "crab_"+getDataKey(muData, d)+"_MuData_"+crab_dir.split("_")[1]
-    execme("echo  ")
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     execme("echo NEXT SAMPLE : "+crab_subdir)
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     #execme("crab kill -d "+crab_dir+"/"+crab_subdir)
-    #execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
-    #execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
-    execme("crab report "+crab_dir+"/"+crab_subdir)
-    execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/lumisToProcess.json")
-    execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/processedLumis.json")
+    #execme("crab status "+crab_dir+"/"+crab_subdir)
+    execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
+    #execme("crab resubmit "+crab_dir+"/"+crab_subdir)
+    #execme("crab report "+crab_dir+"/"+crab_subdir)
+    #execme("export PATH=$HOME/.local/bin:/afs/cern.ch/cms/lumi/brilconda-1.1.7/bin:$PATH")
+    #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/lumisToProcess.json")
+    #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/processedLumis.json")
     #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/notFinishedLumis.json")
 
 def statusEleMC(mc, m):
@@ -69,34 +72,36 @@ def statusEleMC(mc, m):
     execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
 
 def statusEleData(eleData, d):
-    crab_dir = "CrabEleData_20170409"
+    crab_dir = "CrabEleData_20170919"
+    crab_subdir = "crab_"+getDataKey(eleData, d)+"_EleData_"+crab_dir.split("_")[1]
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     execme("echo NEXT SAMPLE : "+crab_subdir)
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
-    crab_subdir = "crab_"+getDataKey(eleData, d)+"_EleData_"+crab_dir.split("_")[1]
-    execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
-    #execme("crab report "+crab_dir+"/"+crab_subdir)
-    #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/lumisToProcess.json")
-    #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/processedLumis.json")
+    #execme("crab status "+crab_dir+"/"+crab_subdir)
+    #execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
+    #execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
+    execme("crab report "+crab_dir+"/"+crab_subdir)
+    execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/lumisToProcess.json")
+    execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/processedLumis.json")
     #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/notFinishedLumis.json")
 
 if isMu:
-    if isMC:
+    if isMuMC:
         toPrint("Total MC samples",len(mc))
-        for m in range(range_MC):
+        for m in range(range_MuMC):
             statusMuMC(mc, m)
             #statusEleMC(mc, m)
-    if isData:
-        toPrint("Total muon DATA samples",len(muData))
+    if isMuData:
+        toPrint("Total SingleMuon Data samples",len(muData))
         for d in range(range_muData):
             statusMuData(muData, d)
 if isEle:
-    if isMC:
+    if isEleMC:
         toPrint("Total MC samples",len(mc))
-        for m in range(range_MC):
+        for m in range(range_EleMC):
             statusEleMC(mc, m)
             #statusEleMC(mc, m)
-    if isData:
-        toPrint("Total muon DATA samples",len(eleData))
+    if isEleData:
+        toPrint("Total SingleElectron Data samples",len(eleData))
         for d in range(range_eleData):
             statusEleData(eleData, d)
