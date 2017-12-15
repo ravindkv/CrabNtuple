@@ -30,46 +30,50 @@ from mcMiniAOD import mcSampDict as mc
 from sampleKeyVal import *
 from multiCrab import *
 
+#------------------------------------------
 #Check availability of samples on DAS
+#------------------------------------------
 #toPrint("Total MC samples",len(mc))
 for n in range(len(mc)):
     #print getMCKey(mc, n)
     #print getMCVal(mc, n)
-    das = "das_client.py --limit=1 --query=\"file dataset=%s\"" %getMCVal(mc, n)
+    das = "dasgoclient --limit=1 --query=\"file dataset=%s\"" %getMCVal(mc, n)
     #execme(das)
 
 #toPrint("Total single muon DATA samples",len(muData))
 for n in range(len(muData)):
-    #print getDataKey(data, n)
+    #print getDataKey(muData, n)
     #print getDataVal(muData, n)
-    das = "das_client.py --limit=1 --query=\"file dataset=%s\"" %getDataVal(muData, n)
+    das = "dasgoclient --limit=1 --query=\"file dataset=%s\"" %getDataVal(muData, n)
     #execme(das)
 
 #toPrint("Total single electron DATA samples",len(eleData))
 for n in range(len(eleData)):
-    #print getDataKey(data, n)
+    #print getDataKey(eleData, n)
     #print getDataVal(eleData, n)
-    das = "das_client.py --limit=1 --query=\"file dataset=%s\"" %getDataVal(eleData, n)
+    das = "dasgoclient --limit=1 --query=\"file dataset=%s\"" %getDataVal(eleData, n)
     #execme(das)
 
+#------------------------------------------
 #USER INPUTS
-#-------------------------------
+#------------------------------------------
 #muon channel
-isMu = True
-isMuMC = True
+isMu = False
+isMuMC = False
 isMuData = False
 range_muMC = len(mc)
 range_muData = len(muData)
 
 #electron channel
-isEle = False
-isEleMC = False
-isEleData = False
+isEle = True
+isEleMC = True
+isEleData = True
 range_EleMC = len(mc)
 range_EleData = len(eleData)
-#-------------------------------
 
+#------------------------------------------
 #CRAB PARAMETERS
+#------------------------------------------
 #https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile#CRAB_configuration_parameters
 from CRABClient.UserUtilities import config, getUsernameFromSiteDB
 config = config()
@@ -92,7 +96,9 @@ muMC_T2Paths_ = open("ntupleT2Paths_muMC"+ date +".txt", 'w')
 muData_T2Paths_ = open("ntupleT2Paths_muData"+ date +".txt", 'w')
 all_T2Paths = open("ntupleT2Paths_"+ date +".txt", 'w')
 
+#------------------------------------------
 #MUON CHANNEL
+#------------------------------------------
 muMC_T2Paths = ["MUON MC:"]
 muData_T2Paths = ["MUON DATA:"]
 muMC_dirT2 = "ntuple_MuMC_kfitM_"+date
@@ -112,8 +118,7 @@ if isMu:
             elif("Hplus" in getMCKey(mc, m)):
                 config.Data.unitsPerJob = 3
             else:
-                config.Data.unitsPerJob = 3
-                #config.Data.unitsPerJob = 8
+                config.Data.unitsPerJob = 8
             createMuMCpsetFile(mu_MC, "../../MiniTree/Selection/test/muonNtuple_cfg.py", mc, m)
             config.General.requestName = getMCKey(mc, m) +"_"+mu_MC
             config.General.workArea = 'Crab' +mu_MC
@@ -158,15 +163,17 @@ all_T2Paths.write(str(muMC_T2Paths)+",\n\n")
 muData_T2Paths_.write(str(muData_T2Paths)+",\n\n")
 all_T2Paths.write(str(muData_T2Paths)+",\n\n")
 
+#------------------------------------------
 #ELECTRON CHANNEL
+#------------------------------------------
 electrons_MC_t2_paths = ["ELECTRON MC:"]
 electrons_Data_t2_paths = ["ELECTRON DATA:"]
-eleMC_dirT2 = "ntuple_EleMC_kfitL_"+date
-eleData_dirT2 = "ntuple_EleData_kfitL_"+date
+eleMC_dirT2 = "ntuple_EleMC_kfitM_"+date
+eleData_dirT2 = "ntuple_EleData_kfitM_"+date
 if isEle:
     if isEleMC:
         #toPrint("ELECTRONS, MC ","")
-        for m in range(range_MC):
+        for m in range(range_EleMC):
             ele_MC = "EleMC_"+ date
             config.Data.splitting = 'FileBased'
             if("ST" in getMCKey(mc, m)):
@@ -188,14 +195,15 @@ if isEle:
             #config.JobType.outputFiles = [getMCKey(mc, m)+ ele_MC+ "_Ntuple.root" ]
             #config.JobType.pyCfgParams = ["sampleCode="+getMCKey(mc, m)]
             multiCrabSubmit(config, config.Data.outLFNDirBase)
-            electrons_MC_t2_paths.append(getNtupleT2Paths(ele_MC, mc, m))
+            electrons_MC_t2_paths.append(getNtupleT2Paths(ele_MC, mc, m, eleMC_dirT2))
 
     if isEleData:
         #toPrint("ELECTRONS, DATA ","")
         for d in range(range_EleData):
             ele_Data = "EleData_"+ date
-            config.Data.splitting = 'FileBased'
-            config.Data.unitsPerJob = 7
+            #config.Data.unitsPerJob = 20
+            config.Data.unitsPerJob = 300
+            config.Data.splitting = 'LumiBased'
             config.Data.allowNonValidInputDataset = True
             createEleDatapsetFile(ele_Data, "../../MiniTree/Selection/test/electronNtuple_cfg.py", eleData, d)
             config.General.requestName = getDataKey(eleData, d) + "_"+ele_Data
