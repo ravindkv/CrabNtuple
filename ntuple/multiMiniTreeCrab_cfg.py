@@ -26,7 +26,8 @@ import FWCore.ParameterSet.Config as cms
 sys.path.insert(0, os.getcwd().replace("ntuple","module"))
 from dataMiniAOD import muDataSampDict as muData
 from dataMiniAOD import eleDataSampDict as eleData
-from mcMiniAOD import mcSampDict as mc
+from mcMiniAOD import mcMuSampDict as mcMu
+from mcMiniAOD import mcEleSampDict as mcEle
 from sampleKeyVal import *
 from multiCrab import *
 
@@ -34,10 +35,10 @@ from multiCrab import *
 #Check availability of samples on DAS
 #------------------------------------------
 #toPrint("Total MC samples",len(mc))
-for n in range(len(mc)):
-    #print getMCKey(mc, n)
-    #print getMCVal(mc, n)
-    das = "dasgoclient --limit=1 --query=\"file dataset=%s\"" %getMCVal(mc, n)
+for n in range(len(mcMu)):
+    #print getMCKey(mcMu, n)
+    #print getMCVal(mcMu, n)
+    das = "dasgoclient --limit=1 --query=\"file dataset=%s\"" %getMCVal(mcMu, n)
     #execme(das)
 
 #toPrint("Total single muon DATA samples",len(muData))
@@ -60,15 +61,15 @@ for n in range(len(eleData)):
 #muon channel
 isMu = False
 isMuMC = False
-isMuData = False
-range_muMC = len(mc)
+isMuData = True
+range_muMC = len(mcMu)
 range_muData = len(muData)
 
 #electron channel
 isEle = True
 isEleMC = True
-isEleData = True
-range_EleMC = len(mc)
+isEleData = False
+range_EleMC = len(mcEle)
 range_EleData = len(eleData)
 
 #------------------------------------------
@@ -109,26 +110,26 @@ if isMu:
         for m in range(range_muMC):
             mu_MC = "MuMC_"+ date
             config.Data.splitting = 'FileBased'
-            if("ST" in getMCKey(mc, m)):
+            if("ST" in getMCKey(mcMu, m)):
                 config.Data.unitsPerJob = 3
-            elif("TTJetsM" in getMCKey(mc, m)):
+            elif("TTJetsM" in getMCKey(mcMu, m)):
                 config.Data.unitsPerJob = 2
-            elif("TTJetsP" in getMCKey(mc, m)):
+            elif("TTJetsP" in getMCKey(mcMu, m)):
                 config.Data.unitsPerJob = 3
-            elif("Hplus" in getMCKey(mc, m)):
+            elif("Hplus" in getMCKey(mcMu, m)):
                 config.Data.unitsPerJob = 3
             else:
                 config.Data.unitsPerJob = 8
-            createMuMCpsetFile(mu_MC, "../../MiniTree/Selection/test/muonNtuple_cfg.py", mc, m)
-            config.General.requestName = getMCKey(mc, m) +"_"+mu_MC
+            createMuMCpsetFile(mu_MC, "../../MiniTree/Selection/test/muonNtuple_cfg.py", mcMu, m)
+            config.General.requestName = getMCKey(mcMu, m) +"_"+mu_MC
             config.General.workArea = 'Crab' +mu_MC
             config.JobType.psetName = 'config/'+config.General.requestName+ "_cfg.py"
-            config.Data.inputDataset = getMCVal(mc, m)
-            config.Data.outLFNDirBase = getLFNDirBaseMC(mu_MC, mc, m, muMC_dirT2)
+            config.Data.inputDataset = getMCVal(mcMu, m)
+            config.Data.outLFNDirBase = getLFNDirBaseMC(mu_MC, mcMu, m, muMC_dirT2)
             #config.JobType.outputFiles = [getMCKey(mc, m)+ mu_MC+ "_Ntuple.root" ]
-            #config.JobType.pyCfgParams = ["sampleCode="+getMCKey(mc, m)]
+            #config.JobType.pyCfgParams = ["sampleCode="+getMCKey(mcMu, m)]
             multiCrabSubmit(config, config.Data.outLFNDirBase)
-            muMC_T2Paths.append(getNtupleT2Paths(mu_MC, mc, m, muMC_dirT2))
+            muMC_T2Paths.append(getNtupleT2Paths(mu_MC, mcMu, m, muMC_dirT2))
 
     if isMuData:
         #toPrint("MUONS, DATA ","")
@@ -145,7 +146,7 @@ if isMu:
             config.General.workArea = 'Crab'+mu_Data
             config.JobType.psetName = 'config/'+config.General.requestName+ "_cfg.py"
             #....................
-            crab_dir = "CrabMuData_20171115"
+            crab_dir = "CrabMuData_20180116"
             crab_subdir = "crab_"+getDataKey(muData, d)+"_MuData_"+crab_dir.split("_")[1]
             config.Data.lumiMask = "%s/%s/results/notFinishedLumis.json" % (crab_dir, crab_subdir)
             print config.Data.lumiMask
@@ -176,40 +177,46 @@ if isEle:
         for m in range(range_EleMC):
             ele_MC = "EleMC_"+ date
             config.Data.splitting = 'FileBased'
-            if("ST" in getMCKey(mc, m)):
+            if("ST" in getMCKey(mcEle, m)):
                 config.Data.unitsPerJob = 3
-            elif("TTJetsM" in getMCKey(mc, m)):
+            elif("TTJetsM" in getMCKey(mcEle, m)):
                 config.Data.unitsPerJob = 2
-            elif("TTJetsP" in getMCKey(mc, m)):
+            elif("TTJetsP" in getMCKey(mcEle, m)):
                 config.Data.unitsPerJob = 3
-            elif("Hplus" in getMCKey(mc, m)):
+            elif("Hplus" in getMCKey(mcEle, m)):
                 config.Data.unitsPerJob = 3
             else:
                 config.Data.unitsPerJob = 8
-            createEleMCpsetFile(ele_MC, "../../MiniTree/Selection/test/electronNtuple_cfg.py", mc, m)
-            config.General.requestName = getMCKey(mc, m) +"_"+ele_MC
+            createEleMCpsetFile(ele_MC, "../../MiniTree/Selection/test/electronNtuple_cfg.py", mcEle, m)
+            config.General.requestName = getMCKey(mcEle, m) +"_"+ele_MC
             config.General.workArea = 'Crab' +ele_MC
             config.JobType.psetName = 'config/'+config.General.requestName+ "_cfg.py"
-            config.Data.inputDataset = getMCVal(mc, m)
-            config.Data.outLFNDirBase= getLFNDirBaseMC(ele_MC, mc, m, eleMC_dirT2)
-            #config.JobType.outputFiles = [getMCKey(mc, m)+ ele_MC+ "_Ntuple.root" ]
-            #config.JobType.pyCfgParams = ["sampleCode="+getMCKey(mc, m)]
+            config.Data.inputDataset = getMCVal(mcEle, m)
+            config.Data.outLFNDirBase= getLFNDirBaseMC(ele_MC, mcEle, m, eleMC_dirT2)
+            #config.JobType.outputFiles = [getMCKey(mcEle, m)+ ele_MC+ "_Ntuple.root" ]
+            #config.JobType.pyCfgParams = ["sampleCode="+getMCKey(mcEle, m)]
             multiCrabSubmit(config, config.Data.outLFNDirBase)
-            electrons_MC_t2_paths.append(getNtupleT2Paths(ele_MC, mc, m, eleMC_dirT2))
+            electrons_MC_t2_paths.append(getNtupleT2Paths(ele_MC, mcEle, m, eleMC_dirT2))
 
     if isEleData:
         #toPrint("ELECTRONS, DATA ","")
         for d in range(range_EleData):
             ele_Data = "EleData_"+ date
-            #config.Data.unitsPerJob = 20
-            config.Data.unitsPerJob = 300
+            config.Data.unitsPerJob = 20
+            #config.Data.unitsPerJob = 300
             config.Data.splitting = 'LumiBased'
             config.Data.allowNonValidInputDataset = True
             createEleDatapsetFile(ele_Data, "../../MiniTree/Selection/test/electronNtuple_cfg.py", eleData, d)
             config.General.requestName = getDataKey(eleData, d) + "_"+ele_Data
             config.General.workArea = 'Crab' +ele_Data
             config.JobType.psetName = 'config/'+config.General.requestName+ "_cfg.py"
-            config.Data.lumiMask = "https://cms-service-dqm.web.cern.ch/cms-service-dqm/CAF/certification/Collisions16/13TeV/Final/Cert_271036-284044_13TeV_PromptReco_Collisions16_JSON.txt"
+            #....................
+            crab_dir = "CrabEleData_20180116"
+            crab_subdir = "crab_"+getDataKey(eleData, d)+"_EleData_"+crab_dir.split("_")[1]
+            config.Data.lumiMask = "%s/%s/results/notFinishedLumis.json" % (crab_dir, crab_subdir)
+            print config.Data.lumiMask
+            #.....................
+            #config.Data.lumiMask = "https://cms-service-dqm.web.cern.ch/cms-service-dqm/CAF/certification/Collisions16/13TeV/Final/Cert_271036-284044_13TeV_PromptReco_Collisions16_JSON.txt"
             config.Data.inputDataset = getDataVal(eleData, d)
             config.Data.outLFNDirBase = getLFNDirBaseData(ele_Data, eleData, d, eleData_dirT2)
             #config.JobType.outputFiles = [getDataKey(eleData, d)+ ele_Data+ "_Ntuple.root" ]
