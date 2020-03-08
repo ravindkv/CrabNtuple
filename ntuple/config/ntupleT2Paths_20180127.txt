@@ -1,7 +1,0 @@
-['MUON MC:'],
-
-['MUON DATA:'],
-
-['ELECTRON MC:', '/cms/store/user/rverma/ntuple_EleMC_kfitM_20180127/EleMC_20180127/QCD_Pt-120to170_EM_EleMC_20180127/QCD_Pt-120to170_EMEnriched_TuneCUETP8M1_13TeV_pythia8/QCD_Pt-120to170_EM_EleMC_20180127', '/cms/store/user/rverma/ntuple_EleMC_kfitM_20180127/EleMC_20180127/QCD_Pt-170to300_EM_EleMC_20180127/QCD_Pt-170to300_EMEnriched_TuneCUETP8M1_13TeV_pythia8/QCD_Pt-170to300_EM_EleMC_20180127', '/cms/store/user/rverma/ntuple_EleMC_kfitM_20180127/EleMC_20180127/QCD_Pt-20to30_EM_EleMC_20180127/QCD_Pt-20to30_EMEnriched_TuneCUETP8M1_13TeV_pythia8/QCD_Pt-20to30_EM_EleMC_20180127', '/cms/store/user/rverma/ntuple_EleMC_kfitM_20180127/EleMC_20180127/QCD_Pt-300to470_EM_EleMC_20180127/QCD_Pt-300to470_EMEnriched_TuneCUETP8M1_13TeV_pythia8/QCD_Pt-300to470_EM_EleMC_20180127', '/cms/store/user/rverma/ntuple_EleMC_kfitM_20180127/EleMC_20180127/QCD_Pt-30to50_EM_EleMC_20180127/QCD_Pt-30to50_EMEnriched_TuneCUETP8M1_13TeV_pythia8/QCD_Pt-30to50_EM_EleMC_20180127', '/cms/store/user/rverma/ntuple_EleMC_kfitM_20180127/EleMC_20180127/QCD_Pt-50to80_EM_EleMC_20180127/QCD_Pt-50to80_EMEnriched_TuneCUETP8M1_13TeV_pythia8/QCD_Pt-50to80_EM_EleMC_20180127', '/cms/store/user/rverma/ntuple_EleMC_kfitM_20180127/EleMC_20180127/QCD_Pt-80to120_EM_EleMC_20180127/QCD_Pt-80to120_EMEnriched_TuneCUETP8M1_13TeV_pythia8/QCD_Pt-80to120_EM_EleMC_20180127'],
-
-['ELECTRON DATA:']

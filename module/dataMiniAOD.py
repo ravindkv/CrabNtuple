@@ -1,7 +1,6 @@
 import FWCore.ParameterSet.Config as cms
 from collections import OrderedDict
 
-#All Data Samples at 13 TeV
 muDataSampDict_ ={
         "MuRunB2v2": "/SingleMuon/Run2016B-03Feb2017_ver2-v2/MINIAOD",
         "MuRunCv1":  "/SingleMuon/Run2016C-03Feb2017-v1/MINIAOD",
@@ -13,7 +12,6 @@ muDataSampDict_ ={
         "MuRunH3v1": "/SingleMuon/Run2016H-03Feb2017_ver3-v1/MINIAOD"
          }
 muDataSampDict= OrderedDict(sorted(muDataSampDict_.items(), key=lambda t: t[0]))
-
 
 eleDataSampDict_ ={
         "EleRunBver2v2": "/SingleElectron/Run2016B-03Feb2017_ver2-v2/MINIAOD",

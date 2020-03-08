@@ -1,7 +1,0 @@
-['MUON MC:'],
-
-['MUON DATA:'],
-
-['ELECTRON MC:', '/cms/store/user/rverma/ntuple_EleMC_kfitM_20180201/EleMC_20180201/QCD_Pt-15to20_EM_EleMC_20180201/QCD_Pt-15to20_EMEnriched_TuneCUETP8M1_13TeV_pythia8/QCD_Pt-15to20_EM_EleMC_20180201'],
-
-['ELECTRON DATA:']
