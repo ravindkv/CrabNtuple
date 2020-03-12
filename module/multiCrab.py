@@ -41,7 +41,7 @@ import os
 def execme(cmd):
     os.system(cmd)
 
-def createMuMCpsetFile(muMC, ntuple_cfg, mc, m):
+def createMCpsetFile(muMC, ntuple_cfg, mc, m, date):
     samp_code = getMCKey(mc, m)
     t2_ntuple = samp_code+"_"+ muMC+ "_Ntuple.root"
     pset_file = samp_code+ "_"+ muMC+ "_cfg.py"
@@ -49,21 +49,10 @@ def createMuMCpsetFile(muMC, ntuple_cfg, mc, m):
     execme('sed -i '+'s/isData=True/isData=False/g'+ " "+ pset_file)
     execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
     execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
-    execme('mv '+pset_file+ " config/")
+    execme('mv '+pset_file+" "+date+"/config/")
     #print "\033[01;32m"+ " config file created: "+ "\033[00m",  pset_file
 
-def createEleMCpsetFile(eleMC, ntuple_cfg, mc, m):
-    samp_code = getMCKey(mc, m)
-    t2_ntuple = samp_code+"_"+ eleMC+ "_Ntuple.root"
-    pset_file = samp_code+ "_"+ eleMC+ "_cfg.py"
-    execme("cp "+ntuple_cfg+ " "+ pset_file)
-    execme('sed -i '+'s/isData=True/isData=False/g'+ " "+ pset_file)
-    execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
-    execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
-    execme('mv '+pset_file+ " config/")
-    #print "\033[01;32m"+ "config file created: "+ "\033[00m",  pset_file
-
-def createMuDatapsetFile(muData, ntuple_cfg, data, d):
+def createDatapsetFile(muData, ntuple_cfg, data, d, date):
     samp_code = getDataKey(data, d)
     t2_ntuple = samp_code+"_"+ muData+ "_Ntuple.root"
     pset_file = samp_code+ "_"+ muData+ "_cfg.py"
@@ -71,17 +60,6 @@ def createMuDatapsetFile(muData, ntuple_cfg, data, d):
     execme('sed -i '+'s/isData=False/isData=True/g'+ " "+ pset_file)
     execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
     execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
-    execme('mv '+pset_file+ " config/")
-    #print "\033[01;32m"+ "config file created: "+ "\033[00m",  pset_file
-
-def createEleDatapsetFile(eleData, ntuple_cfg, data, d):
-    samp_code = getDataKey(data, d)
-    t2_ntuple = samp_code+"_"+ eleData+ "_Ntuple.root"
-    pset_file = samp_code+ "_"+ eleData+ "_cfg.py"
-    execme("cp "+ntuple_cfg+ " "+ pset_file)
-    execme('sed -i '+'s/isData=False/isData=True/g'+ " "+ pset_file)
-    execme('sed -i '+'s/outFile_.root/'+t2_ntuple+'/g'+ " "+ pset_file)
-    execme('sed -i '+'s/sampCode_/'+samp_code+'/g'+ " "+ pset_file)
-    execme('mv '+pset_file+ " config/")
+    execme('mv '+pset_file+" "+date+"/config/")
     #print "\033[01;32m"+ "config file created: "+ "\033[00m",  pset_file
 

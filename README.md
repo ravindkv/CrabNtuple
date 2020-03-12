@@ -1,34 +1,28 @@
 # MultiCrab
 
- #### Set the CMSSSW release ####
- 
- * cmsrel CMSSW_8_0_25
- * cd CMSSW_8_0_25/src/
- * cmsenv
- 
- #### Download and compile MiniTree ####
- 
- * git clone https://github.com/ravindkv/MiniTree.git
- * cd MiniTree
- * scram b -j20
- * cd ..
- 
+ ### First setup the MiniTree package
+ * https://github.com/ravindkv/MiniTree/blob/Ether2016Tree/README.md
+
  #### Download and set MultiCrab ####
- 
- * git clone https://github.com/ravindkv/MultiCrab.git
- * cd MultiCrab/test
+ * git clone -b Ether2016Tree git@github.com:ravindkv/MultiCrab.git
+ * cd MultiCrab/crab
  * source /cvmfs/cms.cern.ch/crab3/crab_standalone.sh
  * voms-proxy-init -voms cms
 
  #### Run CRAB over single sample ####
- 
- * crab submit -c CrabOneSample_cfg.py 
- 
+ * crab submit oneMiniTreeCrab_cfg.py
+
  #### Run CRAB over multiple samples ####
- 
- * python CrabAllSamples_cfg.py
- 
+ * python multiMiniTreeCrab_cfg.py
+
+#### Push the changes to github ####
+ * git branch
+ * git status
+ * git add -A
+ * git commit -m "new changes"
+ * git push origin Ether2016Crab
+
  #### Take a look at CRAB tutorial ####
  * https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookCRAB3Tutorial
  * https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
- * https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRABClientLibraryAPI#Example_submitting_multiple_task 
+ * https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRABClientLibraryAPI#Example_submitting_multiple_task
