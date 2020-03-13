@@ -2,7 +2,7 @@ import FWCore.ParameterSet.Config as cms
 from collections import OrderedDict
 
 dataSampDict_ ={
-        "MuRunB2v2": "/SingleMuon/Run2016B-03Feb2017_ver2-v2/MINIAOD"}
+        "MuRunB2v2": "/SingleMuon/Run2016H-03Feb2017_ver3-v1/MINIAOD"}
 '''
 dataSampDict_ ={
         "MuRunB2v2": "/SingleMuon/Run2016B-03Feb2017_ver2-v2/MINIAOD",

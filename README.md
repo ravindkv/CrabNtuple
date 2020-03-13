@@ -4,7 +4,7 @@
  * https://github.com/ravindkv/MiniTree/blob/Ether2016Tree/README.md
 
  #### Download and set MultiCrab ####
- * git clone -b Ether2016Tree git@github.com:ravindkv/MultiCrab.git
+ * git clone -b Ether2016Crab git@github.com:ravindkv/MultiCrab.git
  * cd MultiCrab/crab
  * source /cvmfs/cms.cern.ch/crab3/crab_standalone.sh
  * voms-proxy-init -voms cms

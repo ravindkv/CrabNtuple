@@ -95,8 +95,8 @@ all_T2Paths = open(date+"/ntupleT2Paths_"+ date +".txt", 'w')
 #------------------------------------------
 mc_T2Paths = ["MC:"]
 data_T2Paths = ["DATA:"]
-mcDirT2 =   "NTuple_Ether2016_"+date+"_MuEleMC"
-dataDirT2 = "NTuple_Ether2016_"+date+"_MuEleData"
+mcDirT2 =   "NTuple_Y16Ether13TeV_"+date+"_MuEleMC"
+dataDirT2 = "NTuple_Y16Ether13TeV_"+date+"_MuEleData"
 
 if isMC:
     for m in range(range_mc):
@@ -115,7 +115,8 @@ if isMC:
 if isData:
     for d in range(range_data):
         dataTime = "Data_"+ date
-        config.Data.unitsPerJob = 500
+        config.Data.unitsPerJob = 10
+        #config.Data.unitsPerJob = 500
         config.Data.splitting = 'LumiBased'
         config.Data.allowNonValidInputDataset = True
         createDatapsetFile(dataTime, "../../MiniTree/Selection/test/produceTree_cfg.py",data, d, date)
