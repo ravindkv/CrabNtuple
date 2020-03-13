@@ -2,6 +2,9 @@ import FWCore.ParameterSet.Config as cms
 from collections import OrderedDict
 
 dataSampDict_ ={
+        "MuRunB2v2": "/SingleMuon/Run2016B-03Feb2017_ver2-v2/MINIAOD"}
+'''
+dataSampDict_ ={
         "MuRunB2v2": "/SingleMuon/Run2016B-03Feb2017_ver2-v2/MINIAOD",
         "MuRunCv1":  "/SingleMuon/Run2016C-03Feb2017-v1/MINIAOD",
         "MuRunDv1":  "/SingleMuon/Run2016D-03Feb2017-v1/MINIAOD",
@@ -11,7 +14,6 @@ dataSampDict_ ={
         "MuRunH2v1": "/SingleMuon/Run2016H-03Feb2017_ver2-v1/MINIAOD",
         "MuRunH3v1": "/SingleMuon/Run2016H-03Feb2017_ver3-v1/MINIAOD"
          }
-'''
 dataSampDict_ ={
         "MuRunB2v2": "/SingleMuon/Run2016B-03Feb2017_ver2-v2/MINIAOD",
         "MuRunCv1":  "/SingleMuon/Run2016C-03Feb2017-v1/MINIAOD",

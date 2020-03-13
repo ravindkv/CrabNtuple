@@ -95,8 +95,8 @@ all_T2Paths = open(date+"/ntupleT2Paths_"+ date +".txt", 'w')
 #------------------------------------------
 mc_T2Paths = ["MC:"]
 data_T2Paths = ["DATA:"]
-muMC_dirT2 =   "NTuple_Ether_"+date+"_MC"
-muData_dirT2 = "NTuple_Ether_"+date+"_Data"
+mcDirT2 =   "NTuple_Ether2016_"+date+"_MuEleMC"
+dataDirT2 = "NTuple_Ether2016_"+date+"_MuEleData"
 
 if isMC:
     for m in range(range_mc):
