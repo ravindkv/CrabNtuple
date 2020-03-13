@@ -1,10 +1,10 @@
 # MultiCrab
 
  ### First setup the MiniTree package
- * https://github.com/ravindkv/MiniTree/blob/Ether2016Tree/README.md
+ * https://github.com/ravindkv/MiniTree/blob/ExLep2016Tree/README.md
 
  #### Download and set MultiCrab ####
- * git clone -b Ether2016Tree git@github.com:ravindkv/MultiCrab.git
+ * git clone -b ExLep2016Tree git@github.com:ravindkv/MultiCrab.git
  * cd MultiCrab/crab
  * source /cvmfs/cms.cern.ch/crab3/crab_standalone.sh
  * voms-proxy-init -voms cms
@@ -20,7 +20,7 @@
  * git status
  * git add -A
  * git commit -m "new changes"
- * git push origin Ether2016Crab
+ * git push origin ExLep2016Crab
 
  #### Take a look at CRAB tutorial ####
  * https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookCRAB3Tutorial
