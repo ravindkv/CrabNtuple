@@ -26,18 +26,18 @@ def execme(cmd):
 #USERS INPUTS
 isMu = True
 isMuMC = True
-isMuData = True
+isMuData = False
 range_MuMC = len(mcMu)
 range_muData = len(muData)
 
-isEle = False
-isEleMC = False
+isEle = True
+isEleMC = True
 isEleData = False
 range_EleMC = len(mcEle)
 range_eleData = len(eleData)
 
 def statusMuMC(mcMu, m):
-    crab_dir = "CrabMuMC_20200307"
+    crab_dir = "CrabMuMC_20200326"
     crab_subdir = "crab_"+getMCKey(mcMu, m)+"_MuMC_"+crab_dir.split("_")[1]
     execme("echo  ")
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
@@ -68,26 +68,26 @@ def statusMuData(muData, d):
     #execme("brilcalc lumi -b \"STABLE BEAMS\" --normtag /afs/cern.ch/user/l/lumipro/public/Normtags/normtag_DATACERT.json -u /fb -i "+crab_dir+"/"+crab_subdir+"/results/notFinishedLumis.json")
 
 def statusEleMC(mcEle, m):
-    crab_dir = "CrabEleMC_20200225"
+    crab_dir = "CrabEleMC_20200326"
     crab_subdir = "crab_"+getMCKey(mcEle, m)+"_EleMC_"+crab_dir.split("_")[1]
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     execme("echo NEXT SAMPLE : "+crab_subdir)
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     #execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
     execme("crab status "+crab_dir+"/"+crab_subdir)
-    #execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
+    execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
     #execme("crab kill -d "+crab_dir+"/"+crab_subdir)
 
 def statusEleData(eleData, d):
-    crab_dir = "CrabEleData_20200225"
+    crab_dir = "CrabEleData_20200308"
     crab_subdir = "crab_"+getDataKey(eleData, d)+"_EleData_"+crab_dir.split("_")[1]
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     execme("echo NEXT SAMPLE : "+crab_subdir)
     execme("echo +++++++++++++++++++++++++++++++++++++++++++++++")
     #execme("crab kill -d "+crab_dir+"/"+crab_subdir)
-    #execme("crab status "+crab_dir+"/"+crab_subdir)
-    execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
-    #execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
+    execme("crab status "+crab_dir+"/"+crab_subdir)
+    #execme("crab status --verboseErrors "+crab_dir+"/"+crab_subdir)
+    execme("crab resubmit -d "+crab_dir+"/"+crab_subdir)
     #execme("crab report "+crab_dir+"/"+crab_subdir)
     #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/lumisToProcess.json")
     #execme("brilcalc lumi -i "+crab_dir+"/"+crab_subdir+"/results/processedLumis.json")

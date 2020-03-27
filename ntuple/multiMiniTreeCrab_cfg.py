@@ -59,15 +59,15 @@ for n in range(len(eleData)):
 #USER INPUTS
 #------------------------------------------
 #muon channel
-isMu = True
-isMuMC = True
-isMuData = True
+isMu = False
+isMuMC = False
+isMuData = False
 range_muMC = len(mcMu)
 range_muData = len(muData)
 
 #electron channel
-isEle = False
-isEleMC = False
+isEle = True
+isEleMC = True
 isEleData = False
 range_EleMC = len(mcEle)
 range_EleData = len(eleData)

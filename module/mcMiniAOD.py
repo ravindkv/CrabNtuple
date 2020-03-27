@@ -10,6 +10,14 @@ yext1_v2 = run +"_ext1-v2"
 M = "/MINIAODSIM"
 #muon channel
 mcMuSampDict_ ={
+        "ST_tWChannel_antitop": "/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
+        "ST_tChannel_antitop": "/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
+        "ST_tWChannel_top": "/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
+        "ST_tChannel_top": "/ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
+        "ST_sChannel_incl": "/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8/"+year+M
+        }
+'''
+mcMuSampDict_ ={
         "TTJetsM": "/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
         "TTJetsP": "/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/"+year+M,
         "TTJetsP_up": "/TT_TuneCUETP8M2T4up_13TeV-powheg-pythia8/"+year+M,
@@ -18,9 +26,11 @@ mcMuSampDict_ ={
         "TTJetsP_mtop1715": "/TT_TuneCUETP8M2T4_mtop1715_13TeV-powheg-pythia8/"+year+M,
         "TTJetsP_hdampUP": "/TT_hdampUP_TuneCUETP8M2T4_13TeV-powheg-pythia8/"+year+M,
         "TTJetsP_hdampDOWN": "/TT_hdampDOWN_TuneCUETP8M2T4_13TeV-powheg-pythia8/"+year+M,
-        "ST_tW": "/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
-        "ST_t": "/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
-        "ST_s": "/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8/"+year+M,
+        "ST_tWChannel_antitop": "/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
+        "ST_tChannel_antitop": "/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
+        "ST_tWChannel_top": "/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
+        "ST_tChannel_top": "/ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
+        "ST_sChannel_incl": "/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8/"+year+M,
         "WJetsToLNu": "/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
         "W1JetsToLNu": "/W1JetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
         "W2JetsToLNu": "/W2JetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
@@ -51,9 +61,19 @@ mcMuSampDict_ ={
         "HplusM155": "/ChargedHiggsToCS_M155_13TeV-madgraph/"+year+M,
         "HplusM160": "/ChargedHiggsToCS_M160_13TeV-madgraph/"+year+M
         }
+'''
 mcMuSampDict= OrderedDict(sorted(mcMuSampDict_.items(), key=lambda t: t[0]))
 
 #electron channel
+mcEleSampDict_ ={
+        "ST_tWChannel_antitop": "/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
+        "ST_tChannel_antitop": "/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
+        "ST_tWChannel_top": "/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
+        "ST_tChannel_top": "/ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
+        "ST_sChannel_incl": "/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8/"+year+M
+        }
+
+'''
 mcEleSampDict_ ={
         "TTJetsM": "/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
         "TTJetsP": "/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/"+year+M,
@@ -63,9 +83,11 @@ mcEleSampDict_ ={
         "TTJetsP_mtop1715": "/TT_TuneCUETP8M2T4_mtop1715_13TeV-powheg-pythia8/"+year+M,
         "TTJetsP_hdampUP": "/TT_hdampUP_TuneCUETP8M2T4_13TeV-powheg-pythia8/"+year+M,
         "TTJetsP_hdampDOWN": "/TT_hdampDOWN_TuneCUETP8M2T4_13TeV-powheg-pythia8/"+year+M,
-        "ST_tW": "/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
-        "ST_t": "/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
-        "ST_s": "/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8/"+year+M,
+        "ST_tWChannel_antitop": "/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
+        "ST_tChannel_antitop": "/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
+        "ST_tWChannel_top": "/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/"+yext1_v1+M,
+        "ST_tChannel_top": "/ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/"+year+M,
+        "ST_sChannel_incl": "/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8/"+year+M,
         "WJetsToLNu": "/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
         "W1JetsToLNu": "/W1JetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
         "W2JetsToLNu": "/W2JetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"+year+M,
@@ -95,6 +117,7 @@ mcEleSampDict_ ={
         "HplusM155": "/ChargedHiggsToCS_M155_13TeV-madgraph/"+year+M,
         "HplusM160": "/ChargedHiggsToCS_M160_13TeV-madgraph/"+year+M
         }
+'''
 mcEleSampDict= OrderedDict(sorted(mcEleSampDict_.items(), key=lambda t: t[0]))
 
 '''
